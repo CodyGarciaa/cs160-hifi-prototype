@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.movie-list {
+  margin-left: 10px;
+  display: flex;
+  gap: 10px;
+
+  overflow-x: auto;
+  /* overflow-y: hidden; */
+}
+
+.movie-list::-webkit-scrollbar {
+  display: none; 
+}
+
+.browse-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
