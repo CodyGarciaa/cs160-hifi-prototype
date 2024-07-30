@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FeedbackMessage() {
+export default function CustomTriggers() {
   return (
     <>
       <h1>Custom Triggers</h1>

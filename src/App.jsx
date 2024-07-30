@@ -5,11 +5,11 @@ import ToggleButton from './ToggleButton.jsx';
 import SearchBar from './SearchBar.jsx';
 import GeneralButton from './GeneralButton.jsx';
 import FeedbackForm from './FeedbackForm.jsx';
-import FeedbackMessage from './CustomTriggers.jsx';
+import FeedbackMessage from './FeedbackMessage.jsx';
+import CustomTriggers from './CustomTriggers.jsx';
 import YoutubePlayer from './YoutubePlayer.jsx';
 import AddCustomTriggerForm from './AddCustomTrigger.jsx';
 import EditCustomTriggerForm from './EditCustomTrigger.jsx';
-import CustomTriggers from './CustomTriggers.jsx'
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -99,12 +99,23 @@ function App() {
                 </div>
               </div>
               <nav>
-                <Link to="/FeedbackForm">FeedbackForm</Link>
+                <Link to="/FeedbackForm">FeedbackForm</Link><br />
+                <Link to="/FeedbackMessage">FeedbackMessage</Link><br />
+                <Link to="/CustomTriggers">CustomTriggers</Link><br />
+                <Link to="/EditCustomTrigger">EditCustomTrigger</Link><br />
+                <Link to="/AddCustomTrigger">AddCustomTrigger</Link><br />
+
               </nav>
               </main>
               </div>
               } />
             <Route path="/FeedbackForm" element={<FeedbackForm />} />
+            <Route path="/FeedbackMessage" element={<FeedbackMessage />} />
+            <Route path='/CustomTriggers' element={<CustomTriggers />} />
+            <Route path='/EditCustomTrigger' element={<EditCustomTriggerForm />} />
+            <Route path='/AddCustomTrigger' element={<AddCustomTriggerForm />} />
+
+
       </Routes>
     </Router>
   )
