@@ -10,6 +10,9 @@ import CustomTriggers from './CustomTriggers.jsx';
 import YoutubePlayer from './YoutubePlayer.jsx';
 import AddCustomTriggerForm from './AddCustomTrigger.jsx';
 import EditCustomTriggerForm from './EditCustomTrigger.jsx';
+import TriggerFilter from './TriggerFilter.jsx';
+import Account from './Account.jsx';
+import PhobiaSceneDescription from './PhobiaSceneDescrption.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -104,6 +107,12 @@ function App() {
                 <Link to="/CustomTriggers">CustomTriggers</Link><br />
                 <Link to="/EditCustomTrigger">EditCustomTrigger</Link><br />
                 <Link to="/AddCustomTrigger">AddCustomTrigger</Link><br />
+                <Link to="/TriggerFilter">TriggerFilter</Link><br />
+                <Link to="/Account">Account</Link><br />
+                <Link to="/PhobiaSceneDescription">PhobiaSceneDescription</Link><br />
+
+
+
 
               </nav>
               </main>
@@ -114,6 +123,11 @@ function App() {
             <Route path='/CustomTriggers' element={<CustomTriggers />} />
             <Route path='/EditCustomTrigger' element={<EditCustomTriggerForm />} />
             <Route path='/AddCustomTrigger' element={<AddCustomTriggerForm />} />
+            <Route path='/TriggerFilter' element={<TriggerFilter />} />
+            <Route path='/Account' element={<Account />} />
+            <Route path='/PhobiaSceneDescription' element={<PhobiaSceneDescription />} />
+
+
 
 
       </Routes>
