@@ -15,6 +15,7 @@ import EditCustomTriggerForm from './EditCustomTrigger.jsx';
 import TriggerFilter from './TriggerFilter.jsx';
 import Account from './Account.jsx';
 import PhobiaSceneDescription from './PhobiaSceneDescrption.jsx';
+import MovieCard from './MovieCard.jsx'
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -87,17 +88,43 @@ function App() {
 
                 <SearchBar onSearch={handleSearch} />
 
-                <h2>Primary Button</h2>
+                {/* <h2>Primary Button</h2>
                 <GeneralButton onClick={handleClick1} className="primary">Primary</GeneralButton>
                 <h2>Secondary Button</h2>
                 <GeneralButton onClick={handleClick2} className="secondary">Secondary</GeneralButton>
                 <h2>Success Button</h2>
                 <GeneralButton onClick={handleClick1} className="success">Success</GeneralButton>
                 <h2>Danger Button</h2>
-                <GeneralButton onClick={handleClick2} className="danger">Danger</GeneralButton>
+                <GeneralButton onClick={handleClick2} className="danger">Danger</GeneralButton> */}
 
                 <h2>New Releases</h2>
+                <div className="movie-list">
+                  <MovieCard />
+                  <MovieCard />
+                  <MovieCard />
+                  <MovieCard />
+                  <MovieCard />
+                </div>
+
                 <h2>Browse</h2>
+                <div className="browse-list">
+                  <div className="movie-list">
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                  </div>
+                  <div className="movie-list">
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                  </div>
+                </div>
+
+
                 <div id="test-playing">
                   {/* <h1>My YouTube Player</h1>
                   <youtubeplayer videoId={"H7Apf1NxXkY"} /> */}

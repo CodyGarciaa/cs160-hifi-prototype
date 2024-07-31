@@ -1,0 +1,11 @@
+.movie-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-poster {
+    background-color: #838383;
+    height: 161px;
+    width: 107px;
+    border-radius: 5px;
+}
