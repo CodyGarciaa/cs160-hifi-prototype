@@ -18,6 +18,8 @@ import PhobiaSceneDescription from './PhobiaSceneDescrption.jsx';
 import MovieCard from './MovieCard.jsx'
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useNavigate } from "react-router-dom";
+
 
 function App() {
   const handleSearch = (query) => {
@@ -70,6 +72,7 @@ function App() {
     <Router>
           <Routes>
             <Route path="/" element={
+              
               <div className="App">
                 <header>
                 <div className="title">
@@ -85,6 +88,7 @@ function App() {
                 <ToggleButton>spiders</ToggleButton>
                 <ToggleButton>snakes</ToggleButton>
                 <ToggleButton>blood</ToggleButton>
+                <button>+</button>
 
                 <SearchBar onSearch={handleSearch} />
 

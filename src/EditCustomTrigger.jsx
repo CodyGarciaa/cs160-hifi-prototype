@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function EditCustomTriggerForm() {
+  const navigate = useNavigate();
+
+  const goToCustomTriggers = () => {
+    navigate('/CustomTriggers')
+  }
   return (
     <div>
       <form className="EditCustomTriggerForm">
@@ -11,8 +18,8 @@ export default function EditCustomTriggerForm() {
         </div>
         <label htmlFor="trigger-description">Holes/small patterns</label>
         <input type="text" id="trigger-description" placeholder="new description of the trigger"/>
-        <br /><button>delete</button>
-        <button type="submit">submit</button>
+        <br /><button onClick={goToCustomTriggers}>delete</button>
+        <button type="submit" onClick={goToCustomTriggers}>submit</button>
       </form>
     </div>
   );

@@ -1,11 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function MovieDescription() {
+  const navigate = useNavigate();
+
+  const goToHome = () => {
+    navigate('/')
+  }
+
+  const goToFeedbackForm = () => {
+    navigate('/FeedbackForm')
+  }
+
+  const goToPhobiaSceneDescription = () => {
+    navigate('/PhobiaSceneDescription')
+  }
+
     return (
         <div className="movie-detail-container">
           <header className="movie-header">
-            <Link to="/" className="back-button">&#8592;</Link>
+            <button className="back-button" onClick={goToHome}>&#8592;</button>
             <h1 className="movie-title">Zootopia</h1>
             <p className="movie-year">2016 PG 1hr 48m</p>
             <p className="movie-director">Byron Howard, Rich Moore, Jared Bush</p>
@@ -35,10 +50,10 @@ export default function MovieDescription() {
     
           <div className="trigger-warning">
             <p>This movie has 5 scenes with your triggers</p>
-            <button className="scene-descriptions-button">
+            <button className="scene-descriptions-button" onClick={goToPhobiaSceneDescription}>
               See scene descriptions &#10140;
             </button>
-            <button className="feedback-button">Give feedback</button>
+            <button className="feedback-button" onClick={goToFeedbackForm}>Give feedback</button>
           </div>
     
           <Link to="/Stream" className="watch-movie-button">Watch Movie</Link>

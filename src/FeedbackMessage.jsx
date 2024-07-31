@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function FeedbackMessage() {
+  const navigate = useNavigate();
+
+  const goToMovieDescription = () => {
+    navigate('/MovieDescription')
+  }
+
   return (
     <>
       <h1>Phobia Feedback</h1>
@@ -9,7 +16,7 @@ export default function FeedbackMessage() {
       <div>
         We appreciate you helping us give more accurate info in the future! 🤩
       </div>
-      <button>Back</button>
+      <button onClick={goToMovieDescription}>Back</button>
     </>
   );
 }

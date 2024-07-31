@@ -1,5 +1,7 @@
 import React from "react";
 import ToggleButton from "./ToggleButton";
+import { useNavigate } from "react-router-dom";
+
 
 const Avatar = ({ src, alt }) => {
     const defaultAvatar = (
@@ -17,6 +19,8 @@ const Avatar = ({ src, alt }) => {
         />
       </svg>
     );
+
+
   
     return (
       <div
@@ -74,8 +78,14 @@ const styles = {
   
 
 export default function Account() {
+    const navigate = useNavigate();
+
+    const goToHome = () => {
+        navigate('/')
+    }
     return (
         <>
+            <button className="back-button" onClick={goToHome}>&#8592;</button>
             <Avatar />
             <div>
                 Custom Triggers<button>+</button>
