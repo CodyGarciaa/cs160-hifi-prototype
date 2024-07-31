@@ -7,6 +7,8 @@ import GeneralButton from './GeneralButton.jsx';
 import FeedbackForm from './FeedbackForm.jsx';
 import FeedbackMessage from './FeedbackMessage.jsx';
 import CustomTriggers from './CustomTriggers.jsx';
+import MovieDescription from './MovieDescription.jsx';
+import Stream from './Stream.jsx';
 import YoutubePlayer from './YoutubePlayer.jsx';
 import AddCustomTriggerForm from './AddCustomTrigger.jsx';
 import EditCustomTriggerForm from './EditCustomTrigger.jsx';
@@ -110,10 +112,8 @@ function App() {
                 <Link to="/TriggerFilter">TriggerFilter</Link><br />
                 <Link to="/Account">Account</Link><br />
                 <Link to="/PhobiaSceneDescription">PhobiaSceneDescription</Link><br />
-
-
-
-
+                <Link to="/MovieDescription">Movie Description</Link><br />
+                {/* <Link to="/Stream">Stream</Link><br /> */}
               </nav>
               </main>
               </div>
@@ -126,6 +126,8 @@ function App() {
             <Route path='/TriggerFilter' element={<TriggerFilter />} />
             <Route path='/Account' element={<Account />} />
             <Route path='/PhobiaSceneDescription' element={<PhobiaSceneDescription />} />
+            <Route path='/MovieDescription' element={<MovieDescription />} />
+            <Route path='/Stream' element={<Stream />} />
 
 
 
