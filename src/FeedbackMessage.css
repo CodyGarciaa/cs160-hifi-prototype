@@ -1,0 +1,32 @@
+.feedback-message {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    gap: 30px;
+    margin-top: 130px;
+}
+
+.feedback-message h1 {
+    font-size: 32px;
+    color: #000000;
+}
+
+.feedback-message div {
+    font-size: 18px;
+    color: #000000;
+}
+
+.feedback-message button {
+    padding: 15px 22.5px;
+    background: #6951FF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: background 0.3s;
+    align-self: flex-end;
+    margin-top: 260px;
+}

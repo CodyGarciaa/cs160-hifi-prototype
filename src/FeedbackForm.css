@@ -1,0 +1,104 @@
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px; /* Maintain margin for the form itself */
+    font-size: 14px;
+    gap: 10px;
+}
+
+
+
+.back-button {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e0e0e0;
+    border: none;
+    color: black;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    font-size: 32px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.feedback-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 60px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    background: white;
+    transition: border-color 0.3s;
+}
+
+.feedback-button span {
+    margin-right: 10px;
+}
+
+.feedback-button.selected {
+    border-color: blue;
+}
+
+#text-feedback {
+    height: 150px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.pop-up-time {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.time-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.time-inputs input {
+    width: 100px;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.add-button {
+    font-size: 24px;
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e0e0e0;
+    border: none;
+    color: black;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+
+.submit-button {
+    padding: 15px 22.5px;
+    background: #6951FF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    align-self: flex-end;
+    margin-top: 40px;
+}
