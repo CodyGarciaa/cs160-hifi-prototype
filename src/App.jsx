@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import ToggleButton from './ToggleButton.jsx';
 import SearchBar from './SearchBar.jsx';
-import GeneralButton from './GeneralButton.jsx';
+import Button from './Button.jsx';
 import FeedbackForm from './FeedbackForm.jsx';
 import FeedbackMessage from './FeedbackMessage.jsx';
 import CustomTriggers from './CustomTriggers.jsx';
@@ -62,7 +62,8 @@ function App() {
                   </div>
                   <div className="profile-button">
                     {/* (profile button) */}
-                    <GeneralButton>(O)</GeneralButton>
+                    {/* <Button>(O)</Button> */}
+                    <Button className="back-btn">O</Button>
                   </div>
                 </header>
 
