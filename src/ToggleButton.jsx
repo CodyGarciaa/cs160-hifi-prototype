@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ToggleButton.css';
 
-const ToggleButton = ({ children }) => {
+const ToggleButton = ({ children, className }) => {
     const [isOn, setIsOn] = useState(false);
 
     const handleClick = () => {
@@ -10,7 +10,7 @@ const ToggleButton = ({ children }) => {
 
     return (
         <button 
-            className={`toggle-button ${isOn ? 'on': 'off'}`}
+            className={`toggle-button ${isOn ? 'on': 'off'} ${className}`}
             onClick={handleClick}
         >
             {children}

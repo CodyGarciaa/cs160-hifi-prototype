@@ -75,78 +75,83 @@ function App() {
               
               <div className="App">
                 <header>
-                <div className="title">
-                  <h1>Phobia Free Films</h1>
-                </div>
-                <div className="profile-button">
-                  (profile button)
-                </div>
-              </header>
-              <main>
-
-              <div>
-                <ToggleButton>spiders</ToggleButton>
-                <ToggleButton>snakes</ToggleButton>
-                <ToggleButton>blood</ToggleButton>
-                <button>+</button>
-
-                <SearchBar onSearch={handleSearch} />
-
-                {/* <h2>Primary Button</h2>
-                <GeneralButton onClick={handleClick1} className="primary">Primary</GeneralButton>
-                <h2>Secondary Button</h2>
-                <GeneralButton onClick={handleClick2} className="secondary">Secondary</GeneralButton>
-                <h2>Success Button</h2>
-                <GeneralButton onClick={handleClick1} className="success">Success</GeneralButton>
-                <h2>Danger Button</h2>
-                <GeneralButton onClick={handleClick2} className="danger">Danger</GeneralButton> */}
-
-                <h2>New Releases</h2>
-                <div className="movie-list">
-                  <MovieCard />
-                  <MovieCard />
-                  <MovieCard />
-                  <MovieCard />
-                  <MovieCard />
-                </div>
-
-                <h2>Browse</h2>
-                <div className="browse-list">
-                  <div className="movie-list">
-                    <MovieCard />
-                    <MovieCard />
-                    <MovieCard />
-                    <MovieCard />
-                    <MovieCard />
+                  <div className="title">
+                    <h1>Phobia Free <br></br>Films 🎬</h1>
                   </div>
-                  <div className="movie-list">
-                    <MovieCard />
-                    <MovieCard />
-                    <MovieCard />
-                    <MovieCard />
-                    <MovieCard />
+                  <div className="profile-button">
+                    {/* (profile button) */}
+                    <GeneralButton>(O)</GeneralButton>
                   </div>
-                </div>
+                </header>
+
+                <main>
+                  <div>
+                    <div className="phobia-toggles">
+                      <ToggleButton className="phobia-toggle-btn">spiders</ToggleButton>
+                      <ToggleButton className="phobia-toggle-btn">snakes</ToggleButton>
+                      <ToggleButton className="phobia-toggle-btn">blood</ToggleButton>
+                      <button>+</button>
+                    </div>
+
+                    <SearchBar onSearch={handleSearch} />
+
+                    {/* <h2>Primary Button</h2>
+                    <GeneralButton onClick={handleClick1} className="primary">Primary</GeneralButton>
+                    <h2>Secondary Button</h2>
+                    <GeneralButton onClick={handleClick2} className="secondary">Secondary</GeneralButton>
+                    <h2>Success Button</h2>
+                    <GeneralButton onClick={handleClick1} className="success">Success</GeneralButton>
+                    <h2>Danger Button</h2>
+                    <GeneralButton onClick={handleClick2} className="danger">Danger</GeneralButton> */}
+
+                    <h2>New Releases</h2>
+                    <div className="movie-list">
+                      <MovieCard />
+                      <MovieCard />
+                      <MovieCard />
+                      <MovieCard />
+                      <MovieCard />
+                    </div>
+
+                    <h2 id="browse-header">Browse</h2>
+                    <div className="browse-list">
+                      <div className="movie-list">
+                        <MovieCard />
+                        <MovieCard />
+                        <MovieCard />
+                        <MovieCard />
+                        <MovieCard />
+                      </div>
+                      <div className="movie-list">
+                        <MovieCard />
+                        <MovieCard />
+                        <MovieCard />
+                        <MovieCard />
+                        <MovieCard />
+                      </div>
+                    </div>
 
 
-                <div id="test-playing">
-                  {/* <h1>My YouTube Player</h1>
-                  <youtubeplayer videoId={"H7Apf1NxXkY"} /> */}
-                </div>
-              </div>
-              <nav>
-                <Link to="/FeedbackForm">FeedbackForm</Link><br />
-                <Link to="/FeedbackMessage">FeedbackMessage</Link><br />
-                <Link to="/CustomTriggers">CustomTriggers</Link><br />
-                <Link to="/EditCustomTrigger">EditCustomTrigger</Link><br />
-                <Link to="/AddCustomTrigger">AddCustomTrigger</Link><br />
-                <Link to="/TriggerFilter">TriggerFilter</Link><br />
-                <Link to="/Account">Account</Link><br />
-                <Link to="/PhobiaSceneDescription">PhobiaSceneDescription</Link><br />
-                <Link to="/MovieDescription">Movie Description</Link><br />
-                {/* <Link to="/Stream">Stream</Link><br /> */}
-              </nav>
-              </main>
+                    <div id="test-playing">
+                      {/* <h1>My YouTube Player</h1>
+                      <youtubeplayer videoId={"H7Apf1NxXkY"} /> */}
+                    </div>
+                  </div>
+
+                  <nav>
+                    <Link to="/FeedbackForm">FeedbackForm</Link><br />
+                    <Link to="/FeedbackMessage">FeedbackMessage</Link><br />
+                    <Link to="/CustomTriggers">CustomTriggers</Link><br />
+                    <Link to="/EditCustomTrigger">EditCustomTrigger</Link><br />
+                    <Link to="/AddCustomTrigger">AddCustomTrigger</Link><br />
+                    <Link to="/TriggerFilter">TriggerFilter</Link><br />
+                    <Link to="/Account">Account</Link><br />
+                    <Link to="/PhobiaSceneDescription">PhobiaSceneDescription</Link><br />
+                    <Link to="/MovieDescription">Movie Description</Link><br />
+                    {/* <Link to="/Stream">Stream</Link><br /> */}
+                  </nav>
+
+                </main>
               </div>
               } />
             <Route path="/FeedbackForm" element={<FeedbackForm />} />

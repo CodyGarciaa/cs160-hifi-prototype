@@ -5,15 +5,23 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    
   }
   
-  .toggle-button.on {
-    background-color: #007bff; /* Example "on" state color */
-    color: white;
-  }
-  
-  .toggle-button.off {
-    background-color: #ccc; /* Example "off" state color */
-    color: black;
-  }
-  
+.toggle-button.on {
+  background-color: #6951FF; /* Example "on" state color */
+  color: white;
+}
+
+.toggle-button.off {
+  background-color: white; /* Example "off" state color */
+  color: #696969;
+}
+
+.phobia-toggle-btn {
+  border-radius: 15px;
+  width: 108px;
+  height: 43px;
+  border: 1px solid #696969;
+  background-color: white;
+}
