@@ -1,6 +1,7 @@
 import React from "react";
 import ToggleButton from "./ToggleButton";
 import { useNavigate } from "react-router-dom";
+import Button from './Button.jsx';
 
 
 const Avatar = ({ src, alt }) => {
@@ -85,7 +86,12 @@ export default function Account() {
     }
     return (
         <>
-            <button className="back-button" onClick={goToHome}>&#8592;</button>
+            {/* <button className="back-button" onClick={goToHome}>&#8592;</button> */}
+            <Button className="back-btn" onClick={goToHome}>
+              <img src="https://cdn-icons-png.flaticon.com/512/566/566002.png"
+              style={{ width: '20px', height: '20px' }}/>
+            </Button>
+
             <Avatar />
             <div>
                 Custom Triggers<button>+</button>

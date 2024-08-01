@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import Button from './Button.jsx';
 
 export default function MovieDescription() {
   const navigate = useNavigate();
@@ -20,7 +21,13 @@ export default function MovieDescription() {
     return (
         <div className="movie-detail-container">
           <header className="movie-header">
-            <button className="back-button" onClick={goToHome}>&#8592;</button>
+            {/* <button className="back-button" onClick={goToHome}>&#8592;</button> */}
+            
+            <Button className="back-btn" onClick={goToHome}>
+              <img src="https://cdn-icons-png.flaticon.com/512/566/566002.png"
+              style={{ width: '20px', height: '20px' }}/>
+            </Button>
+
             <h1 className="movie-title">Zootopia</h1>
             <p className="movie-year">2016 PG 1hr 48m</p>
             <p className="movie-director">Byron Howard, Rich Moore, Jared Bush</p>

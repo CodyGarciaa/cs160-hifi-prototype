@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./FeedbackForm.css"; // Import the CSS file
+import Button from './Button.jsx';
 
 export default function FeedbackForm() {
   const navigate = useNavigate();
@@ -21,9 +22,13 @@ export default function FeedbackForm() {
   return (
     <>
       <form className="feedback-form">
-        <button className="back-button" onClick={goToMovieDescription}>
+        {/* <button className="back-button" onClick={goToMovieDescription}>
           ←
-        </button>
+        </button> */}
+        <Button className="back-btn" onClick={goToMovieDescription}>
+          <img src="https://cdn-icons-png.flaticon.com/512/566/566002.png"
+          style={{ width: '20px', height: '20px' }}/>
+        </Button>
         <h1>Phobia Feedback</h1>
         <p>Is the phobia information for this movie accurate?</p>
         <div className="button-group">
