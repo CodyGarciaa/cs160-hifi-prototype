@@ -20,8 +20,9 @@
 
 .phobia-toggle-btn {
   border-radius: 15px;
-  width: 108px;
-  height: 43px;
+  min-width: 108px;
+  max-width: 125px;
+  min-height: 43px;
   border: 1px solid #696969;
   background-color: white;
 }
