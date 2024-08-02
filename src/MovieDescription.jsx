@@ -1,10 +1,52 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Button from './Button.jsx';
+
 
 export default function MovieDescription() {
   const navigate = useNavigate();
+
+  const movieDetails = {
+    'title': 'title',
+    'overview': 'overview',
+    'poster': 'https://placehold.co/600x400'
+  };
+
+  const [response, setResponse] = useState(movieDetails);
+  const test_id = "269149";
+  
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname === '/MovieDesription') {
+      console.log('Navigated to /MovieDesription');
+      // Call your function here
+      myFunction();
+    }
+  }, [location]);
+
+  const myFunction = () => {
+    console.log('Function called on /specific page load');
+    // Add your specific logic here
+  };
+
+
+  const handleClick = async () => {
+    try {
+      var newMovieDetails = { ...movieDetails };
+
+      const res = await fetch('https://api.themoviedb.org/3/movie/269149?language=en-US&api_key=71b2121843b62cdfd9813cba9fdf7fe3');
+      const data = await res.json();
+      newMovieDetails['title'] = data['title'];
+      newMovieDetails['overview'] = data['overview'];
+      newMovieDetails['poster'] = "https://image.tmdb.org/t/p/w500" + data['poster_path'];
+      console.log(newMovieDetails['poster']);
+      console.log(data)
+      setResponse(newMovieDetails);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
 
   const goToHome = () => {
     navigate('/')
@@ -18,6 +60,10 @@ export default function MovieDescription() {
     navigate('/PhobiaSceneDescription')
   }
 
+  const goToStream = () => {
+    navigate('/Stream', { state: { id: 'yourmom' } })
+  }
+
     return (
         <div className="movie-detail-container">
           <header className="movie-header">
@@ -28,7 +74,7 @@ export default function MovieDescription() {
               style={{ width: '20px', height: '20px' }}/>
             </Button>
 
-            <h1 className="movie-title">Zootopia</h1>
+            <h1 className="movie-title">{response['title']}</h1>
             <p className="movie-year">2016 PG 1hr 48m</p>
             <p className="movie-director">Byron Howard, Rich Moore, Jared Bush</p>
             <div className="rating-container">
@@ -45,7 +91,8 @@ export default function MovieDescription() {
           <div className="movie-poster-container">
             <img
               className="movie-poster"
-              src="https://m.media-amazon.com/images/M/MV5BOTMyMjEyNzIzMV5BMl5BanBnXkFtZTgwNzIyNjU0NzE@._V1_SX300.jpg"
+              // src="https://m.media-amazon.com/images/M/MV5BOTMyMjEyNzIzMV5BMl5BanBnXkFtZTgwNzIyNjU0NzE@._V1_SX300.jpg"
+              src={response['poster']}
               alt="Holes Movie Poster"
             />
           </div>
@@ -63,17 +110,17 @@ export default function MovieDescription() {
             <button className="feedback-button" onClick={goToFeedbackForm}>Give feedback</button>
           </div>
     
-          <Link to="/Stream" className="watch-movie-button">Watch Movie</Link>
+          <button onClick={goToStream}>Watch Movie</button>
     
           <div className="movie-info">
             <p className="prominent-actors">
               <strong>Prominent Actors/Actresses:</strong> Ginnifer Goodwin, Jason Bateman, Idris Elba
             </p>
             <p className="synopsis">
-              <strong>Synopsis:</strong> In a city of anthropomorphic animals, a rookie bunny cop and 
-              a cynical con artist fox must work together to uncover a conspiracy.
+              <strong>Synopsis:</strong> {response['overview']}
             </p>
           </div>
+          <button onClick={handleClick}>test toggle informationSs</button>
         </div>
       );
 }
