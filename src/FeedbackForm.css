@@ -1,7 +1,8 @@
 .feedback-form {
     display: flex;
     flex-direction: column;
-    margin: 20px; /* Maintain margin for the form itself */
+    margin: 20px;
+    /* Maintain margin for the form itself */
     font-size: 14px;
     gap: 10px;
 }
@@ -57,25 +58,40 @@
     font-size: 14px;
 }
 
-.pop-up-time {
+.time-question {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
+.time-input-container {
+    position: relative;
+    display: inline-block;
+}
+
 .time-inputs {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
-.time-inputs input {
+.time-input-container input {
     width: 100px;
-    padding: 5px;
-    border: 2px solid black;
+    padding: 10px;
+    border: 1px solid black;
     border-radius: 10px;
-    text-align: center;
+    font-size: 1.2em;
+}
+
+.time-input-container label {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: white;
+    font-size: 1em;
+    color: black;
 }
 
 .add-button {
