@@ -11,9 +11,6 @@ export default function MovieDescription() {
 
 
  const movieDetails = {
-   'title': 'title',
-   'overview': 'overview',
-   'poster': 'https://placehold.co/600x400',
    'runtime': '24hrs',
    'actors': 'actors',
    'directors': 'directors',
@@ -30,6 +27,7 @@ export default function MovieDescription() {
  
  const title = movie_data['tmdb_data']['title'];
  const poster = "https://image.tmdb.org/t/p/w500" + movie_data['tmdb_data']['poster_path'];
+ const overview = movie_data['tmdb_data']['overview'];
 
 let starRating;
  if (response['stars'] == 'N/A') {
@@ -51,9 +49,6 @@ let starRating;
      const urlTitle = encodeURIComponent(title).replace(/%20/g, '+');
      const res = await fetch('http://www.omdbapi.com/?t=' + urlTitle + '&apikey=a470af76');
      const data = await res.json();
-     newMovieDetails['title'] = title;
-     newMovieDetails['overview'] = data['Plot'];
-     newMovieDetails['poster'] = poster;
      newMovieDetails['actors'] = data['Actors'];
      newMovieDetails['directors'] = data['Director'];
      newMovieDetails['year'] = data['Year'];
@@ -101,7 +96,7 @@ let starRating;
            </Button>
 
 
-           <h1 className="movie-title">{response['title']}</h1>
+           <h1 className="movie-title">{title}</h1>
            <p className="movie-year">{response['year']}</p>
            <p className="movie-rated">{response['rated']}</p>
            <p className="movie-genre">{response['genres']}</p>
@@ -127,7 +122,7 @@ let starRating;
          <div className="movie-poster-container">
            <img
              className="movie-poster"
-             src={response['poster']}
+             src={poster}
              alt="Holes Movie Poster"
            />
          </div>
@@ -152,7 +147,7 @@ let starRating;
              <strong>Prominent Actors/Actresses:</strong> {response['actors']}
            </p>
            <p className="synopsis">
-             <strong>Synopsis:</strong> {response['overview']}
+             <strong>Synopsis:</strong> {overview}
            </p>
          </div>
        </div>
