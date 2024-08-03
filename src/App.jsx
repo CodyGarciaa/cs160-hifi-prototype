@@ -1,5 +1,5 @@
 import logo from "./logo.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import ToggleButton from "./ToggleButton.jsx";
@@ -21,8 +21,11 @@ import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import PhobiaSetPopUp from "./PhobiaSetPopUp.jsx";
 
+
+
 function App() {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+  const [phobiaResults, setPhobiaResults] = useState([]);
 
   const openPopUp = () => {
     setIsPopUpVisible(true);
@@ -37,15 +40,53 @@ function App() {
     // replace this with  actual search logic
   };
 
+  const kungFuPanda = 'https://m.media-amazon.com/images/M/MV5BODJkZTZhMWItMDI3Yy00ZWZlLTk4NjQtOTI1ZjU5NjBjZTVjXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg';
+  const insideOut2 = 'https://m.media-amazon.com/images/I/714xn6rxXSL.jpg';
+  const jaws = 'https://m.media-amazon.com/images/I/616z7DnWGmL.jpg';
+  const snakesOnAPlane = 'https://m.media-amazon.com/images/M/MV5BZDY3ODM2YTgtYTU5NC00MTE4LTkzNjktMzNhZWZmMzJjMWRjXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg';
+  const indianaJones = 'https://m.media-amazon.com/images/I/81UOBSDQh0L._AC_UF894,1000_QL80_.jpg';
 
-  const moviePosters = [
-    '/movie-posters/kung-fu-panda.jpg',
-    '/movie-posters/inside-out-2.jpg',
-    '/movie-posters/jaws.jpg',
-    '/movie-posters/snakes-on-a-plane.jpg',
-    '/movie-posters/indiana-jones.jpg'
+  const moviePostersBrowseList = [
+    { src: kungFuPanda, title: 'Kung Fu Panda' },
+    { src: insideOut2, title: 'Inside Out 2' },
+    { src: jaws, title: 'Jaws' },
+    { src: snakesOnAPlane, title: 'Snakes On A Plane' },
+    { src: indianaJones, title: 'Indiana Jones Raiders of the Lost Ark' },
   ];
 
+  const phobia = 'snake'; // phobia to test for now
+
+  const fetchPhobiaResults = async () => {
+    const results = [];
+
+    for (let i = 0; i < moviePostersBrowseList.length; i++) {
+      const movie = moviePostersBrowseList[i];
+      try {
+        const response = await fetch(
+          'https://noggin.rea.gent/meaningful-wallaby-5570',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer rg_v1_8knokoxa4241zf4bc9w2nibk21i3r2a6m9m7_ngk',
+            },
+            body: JSON.stringify({
+              moviePoster: movie.src, // Ensure this is not empty
+              phobia: phobia,
+              movie: movie.title,
+            }),
+          }
+        );
+        const data = await response.json();
+        results[i] = data;
+      } catch (error) {
+        console.error('Error fetching phobia results:', error);
+        results[i] = { movieHasPhobia: false, posterHasPhobia: false }; // Handle error case
+      }
+    }
+
+    setPhobiaResults(results);
+  };
 
   return (
     <Router>
@@ -83,6 +124,7 @@ function App() {
                   </div>
 
                   <SearchBar onSearch={handleSearch} />
+                  <button onClick={fetchPhobiaResults}>Check Phobias</button>
 
                   <h2>New Releases</h2>
                   <div className="new-releases-list">
@@ -98,11 +140,36 @@ function App() {
                   <h2 id="browse-header">Browse</h2>
                   <div className="browse-list">
                     <div className="movie-list">
+                      {/* <MovieCard />
                       <MovieCard />
                       <MovieCard />
                       <MovieCard />
-                      <MovieCard />
-                      <MovieCard />
+                      <MovieCard /> */}
+                      {/* {moviePostersBrowseList.map((movie, index) => (
+                        <MovieCard key={index} image={movie.src} title={movie.title} />
+                      ))} */}
+
+                      {moviePostersBrowseList.map((movie, index) => {
+                        const result = phobiaResults[index];
+                        let posterSrc = movie.src;
+                        console.log('DEBUG: before posterSrc=' + posterSrc);
+
+                        if (result) {
+                          if (result.posterHasPhobia) {
+                            posterSrc = ''; // Set to empty string for gray box
+                          } else if (result.movieHasPhobia) {
+                            posterSrc = 'yellow'; // Set to 'yellow' for yellow box
+                          }
+                        }
+                        console.log('DEBUG: after posterSrc=' + posterSrc);
+
+                        return (
+                          <MovieCard key={index} image={posterSrc} title={movie.title} />
+                        );
+                      })}       
+
+
+
                     </div>
                     <div className="movie-list">
                       <MovieCard />

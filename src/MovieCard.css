@@ -8,4 +8,6 @@
     height: 161px;
     width: 107px;
     border-radius: 5px;
+    background-size: cover;
+    background-position: center;
 }
