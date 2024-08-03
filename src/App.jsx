@@ -45,7 +45,11 @@ function App() {
   const helperLabel = ['m0', 'm1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9']
   const movieList = {};
   helperLabel.forEach(key => {
-    movieList[key] = {'title': 'title', 'poster': 'https://placehold.co/600x400'};
+    // movieList[key] = {'title': 'title', 'poster': 'https://placehold.co/600x400'};
+    movieList[key] = {'tmdb_data': {'title': 'title',
+                                    'poster': 'https://placehold.co/600x400'}, 
+                      'scenes': {}
+                    };
   });
 
 
@@ -60,8 +64,8 @@ function App() {
       const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=71b2121843b62cdfd9813cba9fdf7fe3');
       const data = await res.json();
       for (let i = 0; i < 10; i++) {
-        newMovieList['m' + i]['title'] = data['results'][i]['title'];
-        newMovieList['m' + i]['poster'] = "https://image.tmdb.org/t/p/w500" + data['results'][i]['poster_path'];
+        newMovieList['m' + i]['tmdb_data'] = data['results'][i];
+        // newMovieList['m' + i]['poster'] = "https://image.tmdb.org/t/p/w500" + data['results'][i]['poster_path'];
       }
       setMovieIDs(newMovieList);
     }
@@ -169,11 +173,11 @@ function App() {
                   <h2>New Releases</h2>
                   <div className="new-releases-list">
                     <div className="movie-list">
-                      <MovieCard2 title={movieIDs['m0']['title']} poster={movieIDs['m0']['poster']}/>
-                      <MovieCard2 title={movieIDs['m1']['title']} poster={movieIDs['m1']['poster']}/>
-                      <MovieCard2 title={movieIDs['m2']['title']} poster={movieIDs['m2']['poster']}/>
-                      <MovieCard2 title={movieIDs['m3']['title']} poster={movieIDs['m3']['poster']}/>
-                      <MovieCard2 title={movieIDs['m4']['title']} poster={movieIDs['m4']['poster']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m0']['tmdb_data']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m1']['tmdb_data']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m2']['tmdb_data']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m3']['tmdb_data']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m4']['tmdb_data']}/>
                     </div>
                   </div>
 
@@ -212,11 +216,11 @@ function App() {
 
                     </div>
                     <div className="movie-list">
-                      <MovieCard2 title={movieIDs['m5']['title']} poster={movieIDs['m5']['poster']}/>
-                      <MovieCard2 title={movieIDs['m6']['title']} poster={movieIDs['m6']['poster']}/>
-                      <MovieCard2 title={movieIDs['m7']['title']} poster={movieIDs['m7']['poster']}/>
-                      <MovieCard2 title={movieIDs['m8']['title']} poster={movieIDs['m8']['poster']}/>
-                      <MovieCard2 title={movieIDs['m9']['title']} poster={movieIDs['m9']['poster']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m5']['tmdb_data']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m6']['tmdb_data']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m7']['tmdb_data']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m8']['tmdb_data']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m9']['tmdb_data']}/>
                     </div>
                   </div>
 
