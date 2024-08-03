@@ -14,6 +14,8 @@ export default function FeedbackForm() {
   const location = useLocation();
   const { movie_data } = location.state || {};
   const current_scenes = movie_data['scenes'];
+  const title = movie_data['tmdb_data']['title'];
+  const phobia = movie_data['phobia'];
 
   const goToFeedbackMessage = () => {
     navigate("/FeedbackMessage");
