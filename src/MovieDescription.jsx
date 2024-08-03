@@ -71,7 +71,7 @@ let starRating;
 
 
  const goToFeedbackForm = () => {
-   navigate('/FeedbackForm')
+   navigate('/FeedbackForm', { state: { movie_data: movie_data }})
  }
 
 
