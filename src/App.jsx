@@ -20,12 +20,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import PhobiaSetPopUp from "./PhobiaSetPopUp.jsx";
+import MovieList from "./MovieList.jsx";
 
 
 
 function App() {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
-  const [phobiaResults, setPhobiaResults] = useState([]);
+  const [phobiaResults1, setPhobiaResults1] = useState([]);
+  const [phobiaResults2, setPhobiaResults2] = useState([]);
+  const [phobiaResults3, setPhobiaResults3] = useState([]);
 
   const openPopUp = () => {
     setIsPopUpVisible(true);
@@ -46,7 +49,7 @@ function App() {
   const snakesOnAPlane = 'https://m.media-amazon.com/images/M/MV5BZDY3ODM2YTgtYTU5NC00MTE4LTkzNjktMzNhZWZmMzJjMWRjXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg';
   const indianaJones = 'https://m.media-amazon.com/images/I/81UOBSDQh0L._AC_UF894,1000_QL80_.jpg';
 
-  const moviePostersBrowseList = [
+  const moviePostersBrowseList1 = [
     { src: kungFuPanda, title: 'Kung Fu Panda' },
     { src: insideOut2, title: 'Inside Out 2' },
     { src: jaws, title: 'Jaws' },
@@ -56,11 +59,11 @@ function App() {
 
   const phobia = 'snake'; // phobia to test for now
 
-  const fetchPhobiaResults = async () => {
+  const fetchPhobiaResultsForList = async (movieList, phobia) => {
     const results = [];
-
-    for (let i = 0; i < moviePostersBrowseList.length; i++) {
-      const movie = moviePostersBrowseList[i];
+  
+    for (let i = 0; i < movieList.length; i++) {
+      const movie = movieList[i];
       try {
         const response = await fetch(
           'https://noggin.rea.gent/meaningful-wallaby-5570',
@@ -71,7 +74,7 @@ function App() {
               Authorization: 'Bearer rg_v1_8knokoxa4241zf4bc9w2nibk21i3r2a6m9m7_ngk',
             },
             body: JSON.stringify({
-              moviePoster: movie.src, // Ensure this is not empty
+              moviePoster: movie.src,
               phobia: phobia,
               movie: movie.title,
             }),
@@ -81,11 +84,22 @@ function App() {
         results[i] = data;
       } catch (error) {
         console.error('Error fetching phobia results:', error);
-        results[i] = { movieHasPhobia: false, posterHasPhobia: false }; // Handle error case
+        results[i] = { movieHasPhobia: false, posterHasPhobia: false };
       }
     }
+  
+    return results;
+  };
+  
 
-    setPhobiaResults(results);
+  const fetchPhobiaResults = async () => {
+    const results1 = await fetchPhobiaResultsForList(moviePostersBrowseList1, phobia);
+    // const results2 = await fetchPhobiaResultsForList(moviePostersBrowseList2, phobia);
+    // const results3 = await fetchPhobiaResultsForList(moviePostersBrowseList3, phobia);
+
+    setPhobiaResults1(results1);
+    // setPhobiaResults2(results2);
+    // setPhobiaResults3(results3);
   };
 
   return (
@@ -140,16 +154,8 @@ function App() {
                   <h2 id="browse-header">Browse</h2>
                   <div className="browse-list">
                     <div className="movie-list">
-                      {/* <MovieCard />
-                      <MovieCard />
-                      <MovieCard />
-                      <MovieCard />
-                      <MovieCard /> */}
-                      {/* {moviePostersBrowseList.map((movie, index) => (
-                        <MovieCard key={index} image={movie.src} title={movie.title} />
-                      ))} */}
 
-                      {moviePostersBrowseList.map((movie, index) => {
+                      {/* {moviePostersBrowseList.map((movie, index) => {
                         const result = phobiaResults[index];
                         let posterSrc = movie.src;
                         console.log('DEBUG: before posterSrc=' + posterSrc);
@@ -166,9 +172,17 @@ function App() {
                         return (
                           <MovieCard key={index} image={posterSrc} title={movie.title} />
                         );
-                      })}       
+                      })}        */}
 
 
+                      <MovieList
+                        movieList={moviePostersBrowseList1}
+                        phobiaResults={phobiaResults1}
+                      />
+                      {/* <MovieList
+                        movieList={moviePostersBrowseList2}
+                        phobiaResults={phobiaResults2}
+                      /> */}
 
                     </div>
                     <div className="movie-list">
