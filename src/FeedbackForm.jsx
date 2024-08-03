@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./FeedbackForm.css"; // Import the CSS file
-import Button from './Button.jsx';
+import Button from "./Button.jsx";
 
 export default function FeedbackForm() {
   const navigate = useNavigate();
   const [selectedButton, setSelectedButton] = useState(null);
+  const [timeInputs, setTimeInputs] = useState([{ id: 1 }]);
 
   const goToFeedbackMessage = () => {
     navigate("/FeedbackMessage");
@@ -19,15 +20,18 @@ export default function FeedbackForm() {
     setSelectedButton(button);
   };
 
+  const handleAddTimeInput = () => {
+    setTimeInputs([...timeInputs, { id: timeInputs.length + 1 }]);
+  };
+
   return (
     <>
       <form className="feedback-form">
-        {/* <button className="back-button" onClick={goToMovieDescription}>
-          ←
-        </button> */}
         <Button className="back-btn" onClick={goToMovieDescription}>
-          <img src="https://cdn-icons-png.flaticon.com/512/566/566002.png"
-          style={{ width: '20px', height: '20px' }}/>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/566/566002.png"
+            style={{ width: "20px", height: "20px" }}
+          />
         </Button>
         <h1>Phobia Feedback</h1>
         <p>Is the phobia information for this movie accurate?</p>
@@ -61,16 +65,36 @@ export default function FeedbackForm() {
           id="text-feedback"
           placeholder="Your feedback is helpful for us!"
         />
-        <div className="pop-up-time">
-          <div>If your trigger pop up in the movie unfortunately...</div>
-          <div className="time-inputs">
-            <label htmlFor="vanish-time">vanished</label>
-            <input type="text" id="vanish-time" placeholder="00:00:00" />
-            <>———</>
-            <label htmlFor="pop-up-time">pop-up</label>
-            <input type="text" id="pop-up-time" placeholder="00:00:00" />
-          </div>
-          <button className="add-button">+</button>
+        <div className="time-question">
+          <div>If your trigger pops up in the movie unfortunately...</div>
+          {timeInputs.map((input) => (
+            <div key={input.id} className="time-inputs">
+              <div className="time-input-container">
+                <label htmlFor={`vanish-time-${input.id}`}>vanished</label>
+                <input
+                  type="text"
+                  id={`vanish-time-${input.id}`}
+                  placeholder="00:00:00"
+                />
+              </div>
+              <>———</>
+              <div className="time-input-container">
+                <label htmlFor={`pop-up-time-${input.id}`}>pop-up</label>
+                <input
+                  type="text"
+                  id={`pop-up-time-${input.id}`}
+                  placeholder="00:00:00"
+                />
+              </div>
+            </div>
+          ))}
+          <button
+            type="button"
+            className="add-button"
+            onClick={handleAddTimeInput}
+          >
+            +
+          </button>
         </div>
         <button
           type="submit"

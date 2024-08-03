@@ -1,22 +1,35 @@
-
 .btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  .btn.back-btn {
-    width: 50px;
-    height: 50px;
-    background-color: #E0E0E0;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.btn.back-btn {
+  width: 50px;
+  height: 50px;
+  background-color: #E0E0E0;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-button {
+  width: 130px;
+  padding: 15px 22.5px;
+  background: #6951FF;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  position: fixed;
+  bottom: 90px;
+  align-self: flex-end;
+  box-shadow: 0px 0px 4px grey;
+}
 
   .btn.add-phobia-btn {
     border: 1px solid #6B6B6B;
