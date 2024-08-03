@@ -8,13 +8,13 @@ export default function Stream( {} ) {
 
 
  const location = useLocation();
- const { id, tmdb_details, scenes } = location.state || {};
- const title = tmdb_details['title'];
- const videoSRC = "https://multiembed.mov/?video_id=" + id
-
+ const { movie_data } = location.state || {};
+ const title = movie_data['tmdb_data']['title'];
+ const id = movie_data['tmdb_data']['id'];
+ const videoSRC = "https://multiembed.mov/?video_id=" + id + "&tmdb=1"
 
  const goToMovie = () => {
-   navigate('/MovieDescription', { state: { tmdb_details: tmdb_details, scenes: scenes } })
+   navigate('/MovieDescription', { state: { movie_data: movie_data } })
  }
 
 

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './MovieCard.css';
 
 
-const MovieCard2 = ({tmdb_details, scenes}) => {
+const MovieCard2 = ({movie_data}) => {
  const navigate = useNavigate();
  const movieDetails = {
    'title': 'title',
@@ -15,16 +15,16 @@ const MovieCard2 = ({tmdb_details, scenes}) => {
  useEffect(() => {
    const fetchData = async () => {
      var newMovieDetails = { ...movieDetails };
-     newMovieDetails['title'] = tmdb_details['title'];
-     newMovieDetails['poster'] = "https://image.tmdb.org/t/p/w500" + tmdb_details['poster_path'];
+     newMovieDetails['title'] = movie_data['tmdb_data']['title'];
+     newMovieDetails['poster'] = "https://image.tmdb.org/t/p/w500" + movie_data['tmdb_data']['poster_path'];
      setData(newMovieDetails);
    };
    fetchData();
- }, [tmdb_details, scenes]);
+ }, [movie_data]);
 
 
  const goToMovie = () => {
-   navigate('/MovieDescription', { state: { tmdb_details: tmdb_details, scenes: scenes } })
+   navigate('/MovieDescription', { state: { movie_data: movie_data } })
  };
   return (
    <div className="movie-card" onClick={goToMovie}>

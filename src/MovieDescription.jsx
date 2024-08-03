@@ -17,7 +17,6 @@ export default function MovieDescription() {
    'runtime': '24hrs',
    'actors': 'actors',
    'directors': 'directors',
-   'id': 'id',
    'year': 'year',
    'rated': 'N/A',
    'genres': 'genres',
@@ -27,9 +26,10 @@ export default function MovieDescription() {
 
  const [response, setResponse] = useState(movieDetails);
  const location = useLocation();
- const { tmdb_details, scenes } = location.state || {};
- const title = tmdb_details['title'];
- const poster = "https://image.tmdb.org/t/p/w500" + tmdb_details['poster_path'];
+ const { movie_data } = location.state || {};
+ 
+ const title = movie_data['tmdb_data']['title'];
+ const poster = "https://image.tmdb.org/t/p/w500" + movie_data['tmdb_data']['poster_path'];
 
 let starRating;
  if (response['stars'] == 'N/A') {
@@ -56,7 +56,6 @@ let starRating;
      newMovieDetails['poster'] = poster;
      newMovieDetails['actors'] = data['Actors'];
      newMovieDetails['directors'] = data['Director'];
-     newMovieDetails['id'] = data['imdbID'];
      newMovieDetails['year'] = data['Year'];
      newMovieDetails['rated'] = data['Rated'];
      newMovieDetails['genres'] = data['Genre'];
@@ -87,7 +86,7 @@ let starRating;
 
 
  const goToStream = () => {
-   navigate('/Stream', { state: { id: response['id'], tmdb_details: tmdb_details, scenes: scenes } })
+   navigate('/Stream', { state: { movie_data: movie_data } })
  }
 
 
