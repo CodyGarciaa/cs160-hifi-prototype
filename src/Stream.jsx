@@ -1,37 +1,31 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import Button from './Button.jsx';
 
-const VideoPlayer = ({ videoUrl }) => {
-  return (
-    <div className="video-player">
-      <video width="600" controls>
-        <source src={videoUrl} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  );
-};
 
-export default function Stream() {
-  const test_id = "269149";
-  const location = useLocation();
-  const { id } = location.state || {};
+export default function Stream( {} ) {
+ const navigate = useNavigate();
 
-  const [videoLink, setVideoLink] = useState('https://www.w3schools.com/html/mov_bbb.mp4');
 
-  const changeVideo = () => {
-    setVideoLink('https://multiembed.mov/?video_id=269149&tmdb=1');
-  };
+ const location = useLocation();
+ const { id, title, poster } = location.state || {};
+ const titleNoPlus = title.replace('+', / /g);
+ const videoSRC = "https://multiembed.mov/?video_id=" + id
 
-  const videoUrl = 'https://multiembed.mov/?video_id=269149&tmdb=1';
 
-  return (
-    <div className="video-page-container">
-      <h1 className="video-title">Zootopia</h1>
-      <iframe src="https://multiembed.mov/?video_id=269149&tmdb=1"></iframe>
-      <Link to="/MovieDescription" className="back-to-home-button">
-        Back
-      </Link>
-    </div>
-  );
+ const goToMovie = () => {
+   navigate('/MovieDescription', { state: { title: title, poster: poster } })
+ }
+
+
+ return (
+   <div className="video-page-container">
+     <h1 className="video-title">{titleNoPlus}</h1>
+     <iframe src={videoSRC}></iframe>
+     <Button className="back-btn" onClick={goToMovie}>
+       <img src="https://cdn-icons-png.flaticon.com/512/566/566002.png"
+       style={{ width: '20px', height: '20px' }}/>
+     </Button>
+   </div>
+ );
 };

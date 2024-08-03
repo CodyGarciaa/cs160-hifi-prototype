@@ -10,14 +10,13 @@ import FeedbackMessage from "./FeedbackMessage.jsx";
 import CustomTriggers from "./CustomTriggers.jsx";
 import MovieDescription from "./MovieDescription.jsx";
 import Stream from "./Stream.jsx";
-import YoutubePlayer from "./YoutubePlayer.jsx";
 import AddCustomTriggerForm from "./AddCustomTrigger.jsx";
 import EditCustomTriggerForm from "./EditCustomTrigger.jsx";
 import Account from "./Account.jsx";
 import PhobiaSceneDescription from "./PhobiaSceneDescription.jsx";
 import MovieCard from "./MovieCard.jsx";
+import MovieCard2 from "./MovieCard2.jsx";
 import React from "react";
-import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import PhobiaSetPopUp from "./PhobiaSetPopUp.jsx";
 import MovieList from "./MovieList.jsx";
@@ -42,6 +41,33 @@ function App() {
     console.log(`Search query: ${query}`);
     // replace this with  actual search logic
   };
+
+  const helperLabel = ['m0', 'm1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9']
+  const movieList = {};
+  helperLabel.forEach(key => {
+    movieList[key] = {'title': 'title', 'poster': 'https://placehold.co/600x400'};
+  });
+
+
+  const [movieIDs, setMovieIDs] = useState(movieList);
+
+
+
+
+  useEffect(() => {
+    const handleClick = async () => {
+      var newMovieList = { ...movieList };
+      const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=71b2121843b62cdfd9813cba9fdf7fe3');
+      const data = await res.json();
+      for (let i = 0; i < 10; i++) {
+        newMovieList['m' + i]['title'] = data['results'][i]['title'];
+        newMovieList['m' + i]['poster'] = "https://image.tmdb.org/t/p/w500" + data['results'][i]['poster_path'];
+      }
+      setMovieIDs(newMovieList);
+    }
+    handleClick();
+  }, []);
+
 
   const kungFuPanda = 'https://m.media-amazon.com/images/M/MV5BODJkZTZhMWItMDI3Yy00ZWZlLTk4NjQtOTI1ZjU5NjBjZTVjXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg';
   const insideOut2 = 'https://m.media-amazon.com/images/I/714xn6rxXSL.jpg';
@@ -143,11 +169,11 @@ function App() {
                   <h2>New Releases</h2>
                   <div className="new-releases-list">
                     <div className="movie-list">
-                      <MovieCard />
-                      <MovieCard />
-                      <MovieCard />
-                      <MovieCard />
-                      <MovieCard />
+                      <MovieCard2 title={movieIDs['m0']['title']} poster={movieIDs['m0']['poster']}/>
+                      <MovieCard2 title={movieIDs['m1']['title']} poster={movieIDs['m1']['poster']}/>
+                      <MovieCard2 title={movieIDs['m2']['title']} poster={movieIDs['m2']['poster']}/>
+                      <MovieCard2 title={movieIDs['m3']['title']} poster={movieIDs['m3']['poster']}/>
+                      <MovieCard2 title={movieIDs['m4']['title']} poster={movieIDs['m4']['poster']}/>
                     </div>
                   </div>
 
@@ -186,11 +212,11 @@ function App() {
 
                     </div>
                     <div className="movie-list">
-                      <MovieCard />
-                      <MovieCard />
-                      <MovieCard />
-                      <MovieCard />
-                      <MovieCard />
+                      <MovieCard2 title={movieIDs['m5']['title']} poster={movieIDs['m5']['poster']}/>
+                      <MovieCard2 title={movieIDs['m6']['title']} poster={movieIDs['m6']['poster']}/>
+                      <MovieCard2 title={movieIDs['m7']['title']} poster={movieIDs['m7']['poster']}/>
+                      <MovieCard2 title={movieIDs['m8']['title']} poster={movieIDs['m8']['poster']}/>
+                      <MovieCard2 title={movieIDs['m9']['title']} poster={movieIDs['m9']['poster']}/>
                     </div>
                   </div>
 
@@ -216,10 +242,6 @@ function App() {
                   <Link to="/PhobiaSceneDescription">
                     PhobiaSceneDescription
                   </Link>
-                  <br />
-                  <Link to="/MovieDescription">Movie Description</Link>
-                  <br />
-                  {/* <Link to="/Stream">Stream</Link><br /> */}
                 </nav>
               </main>
               <PhobiaSetPopUp isVisible={isPopUpVisible} onClose={closePopUp} />

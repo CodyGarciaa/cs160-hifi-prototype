@@ -11,8 +11,6 @@ const MovieCard = ({ image, title }) => {
     style = { backgroundImage: `url(${image})` };
   }
   return (
-
-    
     <div className="movie-card">
         <div className="movie-poster"
              style={style}
