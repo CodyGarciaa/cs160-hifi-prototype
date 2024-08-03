@@ -108,13 +108,3 @@
     width: 30px;
 }
 
-.submit-button {
-    padding: 15px 22.5px;
-    background: #6951FF;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    align-self: flex-end;
-    margin-top: 40px;
-}

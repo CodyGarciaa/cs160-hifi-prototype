@@ -16,3 +16,14 @@
   align-items: center;
   justify-content: center;
 }
+
+.submit-button {
+  padding: 15px 22.5px;
+  background: #6951FF;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  position: fixed;
+  bottom: 90px;
+}
