@@ -40,109 +40,110 @@ function App() {
     // replace this with  actual search logic
   };
 
-  // const handleClick1 = () => {
-  //   console.log('Button 1 clicked');
-  //   // Add your specific logic for Button 1 here
-  // };
 
-  // const handleClick2 = () => {
-  //   console.log('Button 2 clicked');
-  //   // Add your specific logic for Button 2 here
-  // };
+  const moviePosters = [
+    '/movie-posters/kung-fu-panda.jpg',
+    '/movie-posters/inside-out-2.jpg',
+    '/movie-posters/jaws.jpg',
+    '/movie-posters/snakes-on-a-plane.jpg',
+    '/movie-posters/indiana-jones.jpg'
+  ];
+
 
   return (
     <Router>
-          <Routes>
-            <Route path="/" element={
-              
-              <div className="App">
-                <header>
-                  <div className="title">
-                    <h1>Phobia Free <br></br>Films 🎬</h1>
+      <Routes>
+        <Route path="/" element={
+          
+          <div className="App">
+            <header>
+              <div className="title">
+                <h1>Phobia Free <br></br>Films 🎬</h1>
+              </div>
+              <div className="profile-button">
+                {/* (profile button) */}
+                {/* <Button>(O)</Button> */}
+                <Button className="back-btn">O</Button>
+              </div>
+            </header>
+
+            <main>
+              <div>
+                <div className="phobia-toggles">
+                  <ToggleButton className="phobia-toggle-btn">spiders</ToggleButton>
+                  <ToggleButton className="phobia-toggle-btn">snakes</ToggleButton>
+                  <ToggleButton className="phobia-toggle-btn">blood</ToggleButton>
+                  {/* <button onClick={openPopUp}>+</button> */}
+                  <Button className="add-phobia-btn" onClick={openPopUp}>+</Button>
+                </div>
+
+                <SearchBar onSearch={handleSearch} />
+
+                <h2>New Releases</h2>
+                <div className="new-releases-list">
+                  <div className="movie-list">
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
                   </div>
-                  <div className="profile-button">
-                    {/* (profile button) */}
-                    {/* <Button>(O)</Button> */}
-                    <Button className="back-btn">O</Button>
+                </div>
+
+                <h2 id="browse-header">Browse</h2>
+                <div className="browse-list">
+                  <div className="movie-list">
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
                   </div>
-                </header>
-
-                <main>
-                  <div>
-                    <div className="phobia-toggles">
-                      <ToggleButton className="phobia-toggle-btn">spiders</ToggleButton>
-                      <ToggleButton className="phobia-toggle-btn">snakes</ToggleButton>
-                      <ToggleButton className="phobia-toggle-btn">blood</ToggleButton>
-                      <button onClick={openPopUp}>+</button>
-                    </div>
-
-                    <SearchBar onSearch={handleSearch} />
-
-                    <h2>New Releases</h2>
-                    <div className="new-releases-list">
-                      <div className="movie-list">
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                      </div>
-                    </div>
-
-                    <h2 id="browse-header">Browse</h2>
-                    <div className="browse-list">
-                      <div className="movie-list">
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                      </div>
-                      <div className="movie-list">
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                        <MovieCard />
-                      </div>
-                    </div>
-
-
-                    {/* <div id="test-playing">
-                      <h1>My YouTube Player</h1>
-                      <youtubeplayer videoId={"H7Apf1NxXkY"} />
-                    </div> */}
-
+                  <div className="movie-list">
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
+                    <MovieCard />
                   </div>
+                </div>
 
-                  <nav>
-                    <Link to="/FeedbackForm">FeedbackForm</Link><br />
-                    <Link to="/FeedbackMessage">FeedbackMessage</Link><br />
-                    <Link to="/CustomTriggers">CustomTriggers</Link><br />
-                    <Link to="/EditCustomTrigger">EditCustomTrigger</Link><br />
-                    <Link to="/AddCustomTrigger">AddCustomTrigger</Link><br />
-                    <Link to="/TriggerFilter">TriggerFilter</Link><br />
-                    <Link to="/Account">Account</Link><br />
-                    <Link to="/PhobiaSceneDescription">PhobiaSceneDescription</Link><br />
-                    <Link to="/MovieDescription">Movie Description</Link><br />
-                    {/* <Link to="/Stream">Stream</Link><br /> */}
-                  </nav>
 
-                </main>
-                <PhobiaSetPopUp isVisible={isPopUpVisible} onClose={closePopUp} />
+                {/* <div id="test-playing">
+                  <h1>My YouTube Player</h1>
+                  <youtubeplayer videoId={"H7Apf1NxXkY"} />
+                </div> */}
 
               </div>
-              } />
-            <Route path="/FeedbackForm" element={<FeedbackForm />} />
-            <Route path="/FeedbackMessage" element={<FeedbackMessage />} />
-            <Route path='/CustomTriggers' element={<CustomTriggers />} />
-            <Route path='/EditCustomTrigger' element={<EditCustomTriggerForm />} />
-            <Route path='/AddCustomTrigger' element={<AddCustomTriggerForm />} />
-            <Route path='/TriggerFilter' element={<TriggerFilter />} />
-            <Route path='/Account' element={<Account />} />
-            <Route path='/PhobiaSceneDescription' element={<PhobiaSceneDescription />} />
-            <Route path='/MovieDescription' element={<MovieDescription />} />
-            <Route path='/Stream' element={<Stream />} />
+
+              <nav>
+                <Link to="/FeedbackForm">FeedbackForm</Link><br />
+                <Link to="/FeedbackMessage">FeedbackMessage</Link><br />
+                <Link to="/CustomTriggers">CustomTriggers</Link><br />
+                <Link to="/EditCustomTrigger">EditCustomTrigger</Link><br />
+                <Link to="/AddCustomTrigger">AddCustomTrigger</Link><br />
+                <Link to="/TriggerFilter">TriggerFilter</Link><br />
+                <Link to="/Account">Account</Link><br />
+                <Link to="/PhobiaSceneDescription">PhobiaSceneDescription</Link><br />
+                <Link to="/MovieDescription">Movie Description</Link><br />
+                {/* <Link to="/Stream">Stream</Link><br /> */}
+              </nav>
+
+            </main>
+            <PhobiaSetPopUp isVisible={isPopUpVisible} onClose={closePopUp} />
+
+          </div>
+          } />
+        <Route path="/FeedbackForm" element={<FeedbackForm />} />
+        <Route path="/FeedbackMessage" element={<FeedbackMessage />} />
+        <Route path='/CustomTriggers' element={<CustomTriggers />} />
+        <Route path='/EditCustomTrigger' element={<EditCustomTriggerForm />} />
+        <Route path='/AddCustomTrigger' element={<AddCustomTriggerForm />} />
+        <Route path='/TriggerFilter' element={<TriggerFilter />} />
+        <Route path='/Account' element={<Account />} />
+        <Route path='/PhobiaSceneDescription' element={<PhobiaSceneDescription />} />
+        <Route path='/MovieDescription' element={<MovieDescription />} />
+        <Route path='/Stream' element={<Stream />} />
 
 
 

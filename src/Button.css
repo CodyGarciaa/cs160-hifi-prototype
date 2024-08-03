@@ -17,3 +17,12 @@
     align-items: center;
     justify-content: center;
   }
+
+  .btn.add-phobia-btn {
+    border: 1px solid #6B6B6B;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 20px;
+    padding: 0;
+    min-width: 30px;
+  }
