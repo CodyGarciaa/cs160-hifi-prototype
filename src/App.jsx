@@ -65,7 +65,6 @@ function App() {
       const data = await res.json();
       for (let i = 0; i < 10; i++) {
         newMovieList['m' + i]['tmdb_data'] = data['results'][i];
-        // newMovieList['m' + i]['poster'] = "https://image.tmdb.org/t/p/w500" + data['results'][i]['poster_path'];
       }
       setMovieIDs(newMovieList);
     }
@@ -173,11 +172,11 @@ function App() {
                   <h2>New Releases</h2>
                   <div className="new-releases-list">
                     <div className="movie-list">
-                      <MovieCard2 tmdb_details={movieIDs['m0']['tmdb_data']}/>
-                      <MovieCard2 tmdb_details={movieIDs['m1']['tmdb_data']}/>
-                      <MovieCard2 tmdb_details={movieIDs['m2']['tmdb_data']}/>
-                      <MovieCard2 tmdb_details={movieIDs['m3']['tmdb_data']}/>
-                      <MovieCard2 tmdb_details={movieIDs['m4']['tmdb_data']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m0']['tmdb_data']} scenes={movieIDs['m0']['scenes']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m1']['tmdb_data']} scenes={movieIDs['m1']['scenes']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m2']['tmdb_data']} scenes={movieIDs['m2']['scenes']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m3']['tmdb_data']} scenes={movieIDs['m3']['scenes']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m4']['tmdb_data']} scenes={movieIDs['m4']['scenes']}/>
                     </div>
                   </div>
 
@@ -216,11 +215,11 @@ function App() {
 
                     </div>
                     <div className="movie-list">
-                      <MovieCard2 tmdb_details={movieIDs['m5']['tmdb_data']}/>
-                      <MovieCard2 tmdb_details={movieIDs['m6']['tmdb_data']}/>
-                      <MovieCard2 tmdb_details={movieIDs['m7']['tmdb_data']}/>
-                      <MovieCard2 tmdb_details={movieIDs['m8']['tmdb_data']}/>
-                      <MovieCard2 tmdb_details={movieIDs['m9']['tmdb_data']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m5']['tmdb_data']} scenes={movieIDs['m5']['scenes']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m6']['tmdb_data']} scenes={movieIDs['m6']['scenes']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m7']['tmdb_data']} scenes={movieIDs['m7']['scenes']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m8']['tmdb_data']} scenes={movieIDs['m8']['scenes']}/>
+                      <MovieCard2 tmdb_details={movieIDs['m9']['tmdb_data']} scenes={movieIDs['m9']['scenes']}/>
                     </div>
                   </div>
 

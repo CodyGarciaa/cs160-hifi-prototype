@@ -27,8 +27,11 @@ export default function MovieDescription() {
 
  const [response, setResponse] = useState(movieDetails);
  const location = useLocation();
- const { title, poster } = location.state || {};
-  let starRating;
+ const { tmdb_details, scenes } = location.state || {};
+ const title = tmdb_details['title'];
+ const poster = "https://image.tmdb.org/t/p/w500" + tmdb_details['poster_path'];
+
+let starRating;
  if (response['stars'] == 'N/A') {
    starRating = 'N/A';
  } else {
@@ -84,7 +87,7 @@ export default function MovieDescription() {
 
 
  const goToStream = () => {
-   navigate('/Stream', { state: { id: response['id'], title: title, poster: poster } })
+   navigate('/Stream', { state: { id: response['id'], tmdb_details: tmdb_details, scenes: scenes } })
  }
 
 

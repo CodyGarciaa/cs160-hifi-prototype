@@ -8,19 +8,19 @@ export default function Stream( {} ) {
 
 
  const location = useLocation();
- const { id, title, poster } = location.state || {};
- const titleNoPlus = title.replace('+', / /g);
+ const { id, tmdb_details, scenes } = location.state || {};
+ const title = tmdb_details['title'];
  const videoSRC = "https://multiembed.mov/?video_id=" + id
 
 
  const goToMovie = () => {
-   navigate('/MovieDescription', { state: { title: title, poster: poster } })
+   navigate('/MovieDescription', { state: { tmdb_details: tmdb_details, scenes: scenes } })
  }
 
 
  return (
    <div className="video-page-container">
-     <h1 className="video-title">{titleNoPlus}</h1>
+     <h1 className="video-title">{title}</h1>
      <iframe src={videoSRC}></iframe>
      <Button className="back-btn" onClick={goToMovie}>
        <img src="https://cdn-icons-png.flaticon.com/512/566/566002.png"
