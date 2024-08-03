@@ -1,0 +1,35 @@
+.container {
+    width: 100%;
+    border: 1.5px solid #6951FF;
+  }
+  
+  .button {
+    background-color: #6951FF;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .dropdown {
+    padding: 20px;
+    width: calc(100% - 20px); /* Use calc for correct width */
+  }
+  
+  .description {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .icon {
+    margin-left: 10px;
+  }
+  
+  .popuptime {
+    margin-left: -110px; /* Add some space between scene name and time */
+  }
+  

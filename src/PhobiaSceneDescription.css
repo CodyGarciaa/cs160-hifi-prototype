@@ -1,0 +1,29 @@
+.phobia-scene-description {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    margin-top: 50px;
+    gap: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+p {
+    font-weight: 500;
+}
+
+.warning {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: #ff0000;
+}
+
+.warning-sign {
+    width: 35px;
+}
