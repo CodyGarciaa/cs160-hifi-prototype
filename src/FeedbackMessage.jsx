@@ -1,12 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./FeedbackMessage.css"; // Import the CSS file
 
 export default function FeedbackMessage() {
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const { movie_data } = location.state || {};
+
   const goToMovieDescription = () => {
-    navigate("/MovieDescription");
+    navigate("/MovieDescription", { state: { movie_data: movie_data } });
   };
 
   return (

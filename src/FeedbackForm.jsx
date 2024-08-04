@@ -11,10 +11,6 @@ export default function FeedbackForm() {
     { id: 1, popUpTime: "", vanishTime: "" },
   ]);
 
-  const location = useLocation();
-  const { movie_data } = location.state || {};
-  const current_scenes = movie_data['scenes'];
-
   const goToFeedbackMessage = () => {
     navigate("/FeedbackMessage");
   };

@@ -12,6 +12,9 @@
 
 ul {
     list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     padding: 10px;
     margin: 0;
     padding: 0;
@@ -67,4 +70,12 @@ ul {
     color: #6951ff;
     font-size: 20px;
     font-weight: 500;
+}
+
+.no-triggers-message {
+    text-align: center;
+    color: #696969;
+    margin: 40px 0 40px 0;
+    font-size: 20px;
+    line-height: 1.5;
 }
