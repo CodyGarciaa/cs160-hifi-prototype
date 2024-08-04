@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import "./CustomTriggers.css";
 
-export default function CustomTriggers() {
+export default function CustomTriggers({ triggers, onAddTrigger }) {
+  // Accept triggers and onAddTrigger as props
   const navigate = useNavigate();
 
   const goToAddCustomTrigger = () => {
-    navigate("/AddCustomTrigger");
+    navigate("/AddCustomTriggerForm");
   };
 
   const goToEditCustomTrigger = () => {
@@ -29,20 +30,22 @@ export default function CustomTriggers() {
 
       <h1>Custom Triggers</h1>
       <ul className="trigger-list">
-        <li class="list-trigger-item">
-          <div className="trigger-item-text">
-            <div className="trigger-item-name">Holes/small patterns</div>
-            <div className="trigger-item-description">
-              deep fear of holes or small patterns, including cartoon depictions
+        {triggers.map((trigger, index) => (
+          <li key={index} className="list-trigger-item">
+            <div className="trigger-item-text">
+              <div className="trigger-item-name">{trigger.triggertitle}</div>
+              <div className="trigger-item-description">
+                {trigger.triggersummary}
+              </div>
             </div>
-          </div>
-          <button
-            className="edit-custom-trigger-btn"
-            onClick={goToEditCustomTrigger}
-          >
-            🖊️
-          </button>
-        </li>
+            <button
+              className="edit-custom-trigger-btn"
+              onClick={goToEditCustomTrigger}
+            >
+              🖊️
+            </button>
+          </li>
+        ))}
       </ul>
       <button className="add-custom-trigger-btn" onClick={goToAddCustomTrigger}>
         <span className="circle-icon">+</span>
