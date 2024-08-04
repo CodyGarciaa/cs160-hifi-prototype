@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./EditCustomTrigger.css";
+import Button from "./Button";
 
 export default function EditCustomTriggerForm({
   triggers,
@@ -71,6 +72,12 @@ export default function EditCustomTriggerForm({
 
   return (
     <div className="edit-custom-trigger">
+      <Button className="back-btn" onClick={goToCustomTriggers}>
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/566/566002.png"
+          style={{ width: "20px", height: "20px" }}
+        />
+      </Button>
       <form className="EditCustomTriggerForm" onSubmit={handleSubmit}>
         <h1>Edit Custom Trigger</h1>
         <div>
@@ -79,8 +86,7 @@ export default function EditCustomTriggerForm({
         </div>
         <div className="input-container">
           <label htmlFor="trigger-description">{trigger?.triggertitle}</label>
-          <input
-            type="text"
+          <textarea
             id="trigger-description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}

@@ -66,11 +66,11 @@ export default function AddCustomTriggerForm({ onAddTrigger }) {
           Describe your phobia, and anything else you want us to know, and we’ll
           tailor your results accordingly!
         </div>
-        <input
-          type="text"
+        <textarea
           id="trigger-description"
           value={triggerDescription}
-          onChange={(e) => setTriggerDescription(e.target.value)} // Update the state with input value
+          onChange={(e) => setTriggerDescription(e.target.value)}
+          required
         />
         <button className="submit-button" type="submit">
           submit

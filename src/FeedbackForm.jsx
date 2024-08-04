@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./FeedbackForm.css"; // Import the CSS file
 import Button from "./Button.jsx";
 
@@ -11,19 +11,12 @@ export default function FeedbackForm() {
     { id: 1, popUpTime: "", vanishTime: "" },
   ]);
 
-  const location = useLocation();
-  const { movie_data } = location.state || {};
-  const current_scenes = movie_data['scenes'];
-  const title = movie_data['tmdb_data']['title'];
-  const phobia = movie_data['phobia'];
-  console.log(title);
-
   const goToFeedbackMessage = () => {
-    navigate("/FeedbackMessage", { state: { movie_data: movie_data } });
+    navigate("/FeedbackMessage");
   };
 
   const goToMovieDescription = () => {
-    navigate("/MovieDescription", { state: { movie_data: movie_data } });
+    navigate("/MovieDescription");
   };
 
   const handleButtonClick = (button) => {
