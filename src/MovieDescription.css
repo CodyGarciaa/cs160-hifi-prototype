@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+.movie-detail-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 10px 10px;
+    margin-top: 50px;
+}
+
+.movie-header {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.movie-header-trigger-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.movie-poster-other {
+    width: 154px;
+    height: 232px;
+    margin-top: 6px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.movie-header {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.movie-header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-title {
+    max-width: 210px;
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.under-title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    color: #6B6B6B;
+    font-size: 14px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.under-title > * {
+    margin: 0;
+}
+
+.year-director, .age-rating-runtime {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rating-set {
+    display: flex;
+    flex-direction: column;
+}
+
+.rating-set > * {
+    margin: 0;
+}
+
+.movie-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.trigger-warning {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+#trigger-number {
+    font-weight: 600;
+    margin: 10px 5px;
+}
+
+.trigger-warning-btns {
+    display: flex;
+    gap: 10px; 
+}

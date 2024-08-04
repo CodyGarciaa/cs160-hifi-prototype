@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Button from './Button.jsx';
 import { FaStar } from 'react-icons/fa';
-
-
+import "./MovieDescription.css";
 
 
 export default function MovieDescription() {
@@ -85,71 +84,84 @@ let starRating;
  }
 
 
-   return (
-       <div className="movie-detail-container">
-         <header className="movie-header">
-           {/* <button className="back-button" onClick={goToHome}>&#8592;</button> */}
-          
-           <Button className="back-btn" onClick={goToHome}>
-             <img src="https://cdn-icons-png.flaticon.com/512/566/566002.png"
-             style={{ width: '20px', height: '20px' }}/>
-           </Button>
+  return (
+    <div className="movie-detail-container">
+      <Button className="back-btn" onClick={goToHome}>
+          <img src="https://cdn-icons-png.flaticon.com/512/566/566002.png"
+          style={{ width: '20px', height: '20px' }}/>
+      </Button>
+      <div className="movie-header-trigger-btns">
+        <header className="movie-header">
+          {/* <button className="back-button" onClick={goToHome}>&#8592;</button> */}
+        
+        
+          <div className="movie-header-text">
+            <div className="movie-title">{title}</div>
+            <div className="under-title">
+              <div className="year-director">
+                <div className="movie-year">{response['year']}</div>
+                <div className="movie-director">{response['directors']}</div>
+              </div>
+              <div className="age-rating-runtime">
+                <div className="movie-rated">Rated {response['rated']}</div>
+                <div className="movie-runtime">{response['runtime']}</div>
+              </div>
+              <div className="movie-genre">{response['genres']}</div>
+              <div className="movie-controls">
+                <Button className="trailer-button">See trailer &#9654;</Button>
+                <Button className="add-to-list-button">+ Add to list</Button>
+              </div>
+        
+              {/* <div className="rating-set">
+                <div class="stars">
+                  {[...Array(5)].madiv((star, index) => {
+                    const ratingValue = index + 1;
+                    return (
+                      <FaStar
+                        key={index}
+                        size={24}
+                        color={ratingValue <= (response['stars']/2) ? "#ffc107" : "#e4e5e9"}
+                      />
+                    );
+                  })}
+                </div>
+                <p>Average rating: {starRating}</p>
+              </div> */}
+            </div>
+          </div>
+        
+          <div className="movie-poster-container">
+            <img
+              className="movie-poster-other"
+              src={poster}
+              alt={`${title} Poster`}
+            />
+          </div>
+        
+        </header>
+        
+        
+        <div className="trigger-warning">
+          <div id="trigger-number">This movie has 5 scenes with your triggers</div>
+          <div className="trigger-warning-btns">
+          <Button className="scene-descriptions-button" onClick={goToPhobiaSceneDescription}>
+            See scene descriptions &gt;
+          </Button>
+          <Button className="give-feedback-button" onClick={goToFeedbackForm}>⚑ Give feedback</Button>
+          </div>
+        </div>
+      </div>
 
+      <Button className="watch-button" onClick={goToStream}>Watch Movie</Button>
 
-           <h1 className="movie-title">{title}</h1>
-           <p className="movie-year">{response['year']}</p>
-           <p className="movie-rated">{response['rated']}</p>
-           <p className="movie-genre">{response['genres']}</p>
-           <p className="movie-runtime">{response['runtime']}</p>
-           <p className="movie-director">{response['directors']}</p>
-           <div>
-             {[...Array(5)].map((star, index) => {
-               const ratingValue = index + 1;
-
-
-               return (
-                 <FaStar
-                   key={index}
-                   size={24}
-                   color={ratingValue <= (response['stars']/2) ? "#ffc107" : "#e4e5e9"}
-                 />
-               );
-             })}
-             <p>Average rating: {starRating}</p>
-           </div>
-         </header>
-  
-         <div className="movie-poster-container">
-           <img
-             className="movie-poster"
-             src={poster}
-             alt="Holes Movie Poster"
-           />
-         </div>
-  
-         <div className="movie-controls">
-           <button className="trailer-button">See trailer &#9654;</button>
-           <button className="add-to-list-button">+ Add to list</button>
-         </div>
-  
-         <div className="trigger-warning">
-           <p>This movie has 5 scenes with your triggers</p>
-           <button className="scene-descriptions-button" onClick={goToPhobiaSceneDescription}>
-             See scene descriptions &#10140;
-           </button>
-           <button className="feedback-button" onClick={goToFeedbackForm}>Give feedback</button>
-         </div>
-  
-         <button onClick={goToStream}>Watch Movie</button>
-  
-         <div className="movie-info">
-           <p className="prominent-actors">
-             <strong>Prominent Actors/Actresses:</strong> {response['actors']}
-           </p>
-           <p className="synopsis">
-             <strong>Synopsis:</strong> {overview}
-           </p>
-         </div>
-       </div>
-     );
+      <div className="movie-info">
+        <p className="prominent-actors">
+          <strong>Prominent Actors/Actresses:</strong> {response['actors']}
+        </p>
+        <p className="synopsis">
+          <strong>Synopsis:</strong> {overview}
+        </p>
+      </div>
+    </div>
+  );
 }
