@@ -71,3 +71,11 @@ ul {
     font-size: 20px;
     font-weight: 500;
 }
+
+.no-triggers-message {
+    text-align: center;
+    color: #696969;
+    margin: 40px 0 40px 0;
+    font-size: 20px;
+    line-height: 1.5;
+}

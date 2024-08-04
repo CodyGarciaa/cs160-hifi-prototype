@@ -3,16 +3,15 @@ import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import "./CustomTriggers.css";
 
-export default function CustomTriggers({ triggers, onAddTrigger }) {
-  // Accept triggers and onAddTrigger as props
+export default function CustomTriggers({ triggers }) {
   const navigate = useNavigate();
 
   const goToAddCustomTrigger = () => {
     navigate("/AddCustomTriggerForm");
   };
 
-  const goToEditCustomTrigger = () => {
-    navigate("/EditCustomTrigger");
+  const goToEditCustomTrigger = (id) => {
+    navigate(`/EditCustomTrigger/${id}`); // Navigate to the specific trigger's edit page
   };
 
   const goToHome = () => {
@@ -30,22 +29,32 @@ export default function CustomTriggers({ triggers, onAddTrigger }) {
 
       <h1>Custom Triggers</h1>
       <ul className="trigger-list">
-        {triggers.map((trigger, index) => (
-          <li key={index} className="list-trigger-item">
-            <div className="trigger-item-text">
-              <div className="trigger-item-name">{trigger.triggertitle}</div>
-              <div className="trigger-item-description">
-                {trigger.triggersummary}
-              </div>
-            </div>
-            <button
-              className="edit-custom-trigger-btn"
-              onClick={goToEditCustomTrigger}
-            >
-              🖊️
-            </button>
-          </li>
-        ))}
+        {triggers.length === 0 ? (
+          <p className="no-triggers-message">
+            You currently have no custom phobia triggers added.
+          </p>
+        ) : (
+          <ul className="trigger-list">
+            {triggers.map((trigger) => (
+              <li key={trigger.id} className="list-trigger-item">
+                <div className="trigger-item-text">
+                  <div className="trigger-item-name">
+                    {trigger.triggertitle}
+                  </div>
+                  <div className="trigger-item-description">
+                    {trigger.triggersummary}
+                  </div>
+                </div>
+                <button
+                  className="edit-custom-trigger-btn"
+                  onClick={() => goToEditCustomTrigger(trigger.id)} // Pass the trigger ID
+                >
+                  🖊️
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </ul>
       <button className="add-custom-trigger-btn" onClick={goToAddCustomTrigger}>
         <span className="circle-icon">+</span>

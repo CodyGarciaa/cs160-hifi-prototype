@@ -146,15 +146,33 @@ function App() {
 
   const [triggers, setTriggers] = useState([
     {
+      id: 1, // Assign a unique id for each trigger
       triggertitle: "Holes/small patterns",
       triggersummary:
         "deep fear of holes or small patterns, including cartoon depictions",
     },
+    // Add more triggers if needed
   ]);
 
-  // Function to handle adding a new trigger
   const handleAddTrigger = (newTrigger) => {
-    setTriggers((prevTriggers) => [...prevTriggers, newTrigger]);
+    setTriggers((prevTriggers) => [
+      ...prevTriggers,
+      { id: prevTriggers.length + 1, ...newTrigger },
+    ]);
+  };
+
+  const handleDeleteTrigger = (id) => {
+    setTriggers((prevTriggers) =>
+      prevTriggers.filter((trigger) => trigger.id !== id)
+    );
+  };
+
+  const handleUpdateTrigger = (id, updatedData) => {
+    setTriggers((prevTriggers) =>
+      prevTriggers.map((trigger) =>
+        trigger.id === id ? { ...trigger, ...updatedData } : trigger
+      )
+    );
   };
 
   return (
@@ -259,8 +277,6 @@ function App() {
                   <br />
                   <Link to="/CustomTriggers">CustomTriggers</Link>
                   <br />
-                  <Link to="/EditCustomTrigger">EditCustomTrigger</Link>
-                  <br />
                   <Link to="/AddCustomTriggerForm">AddCustomTriggerForm</Link>
                   <br />
                   <Link to="/Account">Account</Link>
@@ -285,7 +301,16 @@ function App() {
             />
           }
         />
-        <Route path="/EditCustomTrigger" element={<EditCustomTriggerForm />} />
+        <Route
+          path="/EditCustomTrigger/:id"
+          element={
+            <EditCustomTriggerForm
+              triggers={triggers}
+              onDeleteTrigger={handleDeleteTrigger}
+              onUpdateTrigger={handleUpdateTrigger}
+            />
+          }
+        />{" "}
         <Route
           path="/AddCustomTriggerForm"
           element={<AddCustomTriggerForm onAddTrigger={handleAddTrigger} />}
