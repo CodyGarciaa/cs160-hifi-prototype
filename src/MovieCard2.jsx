@@ -20,7 +20,7 @@ const MovieCard2 = ({movie_data}) => {
      setData(newMovieDetails);
    };
    fetchData();
- }, [movie_data]);
+ }, [movie_data['tmdb_data']['title']]);
 
 
  const goToMovie = () => {

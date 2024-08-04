@@ -71,12 +71,12 @@ let starRating;
 
 
  const goToFeedbackForm = () => {
-   navigate('/FeedbackForm', { state: { movie_data: movie_data }})
+   navigate('/FeedbackForm', { state: { movie_data: movie_data } })
  }
 
 
  const goToPhobiaSceneDescription = () => {
-   navigate('/PhobiaSceneDescription')
+   navigate('/PhobiaSceneDescription', { state: { movie_data: movie_data } })
  }
 
 
