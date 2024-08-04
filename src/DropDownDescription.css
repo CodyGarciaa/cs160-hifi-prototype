@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     border: 1.5px solid #6951FF;
+    border-radius: 5px;
   }
   
   .button {

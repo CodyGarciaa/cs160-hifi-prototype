@@ -191,7 +191,7 @@ function App() {
                 <div className="profile-button">
                   {/* (profile button) */}
                   {/* <Button>(O)</Button> */}
-                  <Button className="back-btn">O</Button>
+                  <Button className="back-btn">👤</Button>
                 </div>
               </header>
 
@@ -207,7 +207,7 @@ function App() {
                     <ToggleButton className="phobia-toggle-btn">
                       blood
                     </ToggleButton>
-                    <button onClick={openPopUp}>+</button>
+                    <Button className="add-phobia-btn" onClick={openPopUp}>+</Button>
                   </div>
 
                   <SearchBar onSearch={handleSearch} />
