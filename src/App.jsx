@@ -48,18 +48,17 @@ function App() {
   const [phobia, setPhobia] = useState("");
 
   // if to be added phobia already not in phobia string, add it,
-  // if it is already in the phobia string, remove it. 
+  // if it is already in the phobia string, remove it.
   const togglePhobia = (phobiaName) => {
     setPhobia((prevPhobias) => {
-      const phobiaArray = prevPhobias.split(',').filter(Boolean);
+      const phobiaArray = prevPhobias.split(",").filter(Boolean);
       if (phobiaArray.includes(phobiaName)) {
-        return phobiaArray.filter((p) => p !== phobiaName).join(',');
+        return phobiaArray.filter((p) => p !== phobiaName).join(",");
       } else {
-        return [...phobiaArray, phobiaName].join(',');
+        return [...phobiaArray, phobiaName].join(",");
       }
     });
   };
-
 
   const helperLabel = [
     "m0",
@@ -181,17 +180,46 @@ function App() {
   };
 
   const handleDeleteTrigger = (id) => {
+    const triggerToDelete = triggers.find((trigger) => trigger.id === id);
+    if (triggerToDelete) {
+      setPhobia((prevPhobias) => {
+        const phobiaArray = prevPhobias.split(",").filter(Boolean);
+        return phobiaArray
+          .filter((phobia) => phobia !== triggerToDelete.triggertitle)
+          .join(",");
+      });
+    }
     setTriggers((prevTriggers) =>
       prevTriggers.filter((trigger) => trigger.id !== id)
     );
   };
 
   const handleUpdateTrigger = (id, updatedData) => {
-    setTriggers((prevTriggers) =>
-      prevTriggers.map((trigger) =>
-        trigger.id === id ? { ...trigger, ...updatedData } : trigger
-      )
+    const trigger = triggers.find((trigger) => trigger.id === id);
+    const newTriggerTitle = updatedData.triggertitle;
+    if (trigger) {
+      // Remove the old trigger title from the phobia array
+      setPhobia((prevPhobias) => {
+        const phobiaArray = prevPhobias.split(",").filter(Boolean);
+        const index = phobiaArray.indexOf(trigger.triggertitle);
+        if (index !== -1) {
+          phobiaArray.splice(index, 1);
+        }
+        return phobiaArray.join(",");
+      });
+    }
+
+    // Update the triggers state
+    const updatedTriggers = triggers.map((trigger) =>
+      trigger.id === id ? { ...trigger, ...updatedData } : trigger
     );
+    setTriggers(updatedTriggers);
+
+    // Add the new trigger title to the phobia array
+    setPhobia((prevPhobias) => {
+      const phobiaArray = prevPhobias.split(",").filter(Boolean);
+      return [...phobiaArray, newTriggerTitle].join(",");
+    });
   };
 
   return (
@@ -217,21 +245,37 @@ function App() {
               <main>
                 <div>
                   <div className="phobia-toggles">
-                    <ToggleButton className="phobia-toggle-btn" onClick={togglePhobia} isToggled={phobia.includes("spiders")}>
+                    <ToggleButton
+                      className="phobia-toggle-btn"
+                      onClick={togglePhobia}
+                      isToggled={phobia.includes("spiders")}
+                    >
                       spiders
                     </ToggleButton>
-                    <ToggleButton className="phobia-toggle-btn" onClick={togglePhobia} isToggled={phobia.includes("snakes")}>
+                    <ToggleButton
+                      className="phobia-toggle-btn"
+                      onClick={togglePhobia}
+                      isToggled={phobia.includes("snakes")}
+                    >
                       snakes
                     </ToggleButton>
-                    <ToggleButton className="phobia-toggle-btn" onClick={togglePhobia} isToggled={phobia.includes("blood")}>
+                    <ToggleButton
+                      className="phobia-toggle-btn"
+                      onClick={togglePhobia}
+                      isToggled={phobia.includes("blood")}
+                    >
                       blood
                     </ToggleButton>
-                    <Button className="add-phobia-btn" onClick={openPopUp}>+</Button>
+                    <Button className="add-phobia-btn" onClick={openPopUp}>
+                      +
+                    </Button>
                   </div>
 
                   <SearchBar onSearch={handleSearch} />
                   {/* <button onClick={fetchPhobiaResults}>Check Phobias</button> */}
-                  <button onClick={console.log(phobia)}>Print current phobia</button>
+                  <button onClick={console.log(phobia)}>
+                    Print current phobia
+                  </button>
 
                   <h2>New Releases</h2>
                   <div className="new-releases-list">
@@ -306,7 +350,13 @@ function App() {
                   </Link>
                 </nav>
               </main>
-              <PhobiaSetPopUp isVisible={isPopUpVisible} onClose={closePopUp} phobia={phobia} togglePhobia={togglePhobia} />
+              <PhobiaSetPopUp
+                isVisible={isPopUpVisible}
+                onClose={closePopUp}
+                phobia={phobia}
+                togglePhobia={togglePhobia}
+                triggers={triggers}
+              />
             </div>
           }
         />
