@@ -77,7 +77,7 @@ function App() {
     // movieList[key] = {'title': 'title', 'poster': 'https://placehold.co/600x400'};
     movieList[key] = {
       tmdb_data: { title: "title", poster: "https://placehold.co/600x400" },
-      phobia: phobia,
+      phobia: "snakes",
       scenes: {},
     };
   });
@@ -339,10 +339,6 @@ function App() {
                 </div>
 
                 <nav>
-                  <Link to="/FeedbackForm">FeedbackForm</Link>
-                  <br />
-                  <Link to="/FeedbackMessage">FeedbackMessage</Link>
-                  <br />
                   <Link to="/CustomTriggers">CustomTriggers</Link>
                   <br />
                   <Link to="/AddCustomTriggerForm">AddCustomTriggerForm</Link>

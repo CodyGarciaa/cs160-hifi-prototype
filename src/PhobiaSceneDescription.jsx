@@ -1,6 +1,6 @@
 import React from "react";
 import DropDownDescription from "./DropDownDescription.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Button from "./Button.jsx";
 import "./PhobiaSceneDescription.css";
 import WarningSing from "./warning-sign-icon-transparent-background-free-png 2.png";
@@ -9,8 +9,15 @@ export default function PhobiaSceneDescription() {
   const navigate = useNavigate();
 
   const goToMovieDescription = () => {
-    navigate("/MovieDescription");
+    navigate("/MovieDescription", { state: { movie_data: movie_data } });
   };
+
+  const location = useLocation();
+  const { movie_data } = location.state || {};
+
+  const title = movie_data["tmdb_data"]["title"];
+  const phobia = movie_data["phobia"];
+  const scenes = movie_data["scenes"];
 
   return (
     <div className="phobia-scene-description">
