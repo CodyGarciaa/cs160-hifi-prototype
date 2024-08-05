@@ -177,6 +177,10 @@ function App() {
       ...prevTriggers,
       { id: prevTriggers.length + 1, ...newTrigger },
     ]);
+    setPhobia((prevPhobias) => {
+      const phobiaArray = prevPhobias.split(",").filter(Boolean);
+      return [...phobiaArray, newTrigger.triggertitle].join(",");
+    });
   };
 
   const handleDeleteTrigger = (id) => {
