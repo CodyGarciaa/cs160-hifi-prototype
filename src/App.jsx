@@ -388,7 +388,7 @@ function App() {
         <Route path="/Account" element={<Account />} />
         <Route
           path="/PhobiaSceneDescription"
-          element={<PhobiaSceneDescription />}
+          element={<PhobiaSceneDescription phobiaArray={phobia.split(",")} />} // Pass phobiaArray as prop
         />
         <Route path="/MovieDescription" element={<MovieDescription />} />
         <Route path="/Stream" element={<Stream />} />
