@@ -1,7 +1,8 @@
 .feedback-form {
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    margin: 0 10px;
+    margin-top: 50px;
     /* Maintain margin for the form itself */
     font-size: 14px;
     gap: 10px;
@@ -21,6 +22,7 @@
     height: 50px;
     width: 50px;
     font-size: 32px;
+
 }
 
 .button-group {
@@ -108,3 +110,6 @@
     width: 30px;
 }
 
+.feedback-h1 {
+    margin-top: 40px;
+}

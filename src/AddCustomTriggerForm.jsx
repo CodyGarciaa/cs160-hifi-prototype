@@ -61,7 +61,7 @@ export default function AddCustomTriggerForm({ onAddTrigger }) {
         />
       </Button>
       <form className="AddCustomTriggerForm" onSubmit={handleSubmit}>
-        <h1>Add Custom Trigger</h1>
+        <h1 className="add-trigger-h1">Add Custom Trigger</h1>
         <div>
           Describe your phobia, and anything else you want us to know, and we’ll
           tailor your results accordingly!

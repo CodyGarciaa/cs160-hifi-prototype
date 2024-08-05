@@ -6,6 +6,10 @@
     gap: 20px;
 }
 
+.custom-trigger-h1 { 
+    margin-top: 30px;
+}
+
 .back-btn {
     align-self: flex-start;
 }

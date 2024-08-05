@@ -86,7 +86,7 @@ export default function FeedbackForm() {
             style={{ width: "20px", height: "20px" }}
           />
         </Button>
-        <h1>Phobia Feedback</h1>
+        <h1 className="feedback-h1">Phobia Feedback</h1>
         <p>Is the phobia information for this movie accurate?</p>
         <div className="button-group">
           <button

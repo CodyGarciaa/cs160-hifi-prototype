@@ -27,7 +27,7 @@ export default function CustomTriggers({ triggers }) {
         />
       </Button>
 
-      <h1>Custom Triggers</h1>
+      <h1 className="custom-trigger-h1">Custom Triggers</h1>
       <ul className="trigger-list">
         {triggers.length === 0 ? (
           <p className="no-triggers-message">
