@@ -83,6 +83,11 @@ function App() {
     "m7",
     "m8",
     "m9",
+    "m10",
+    "m11",
+    "m12",
+    "m13",
+    "m14"
   ];
   const movieList = {};
   helperLabel.forEach((key) => {
@@ -100,25 +105,40 @@ function App() {
 
   useEffect(() => {
     const handleClick = async () => {
-      var newMovieList = { ...movieList };
-      const res = await fetch(
+      const newMovieList = { ...movieList };
+      //get new releases
+      let res = await fetch(
         "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=71b2121843b62cdfd9813cba9fdf7fe3"
       );
-      const data = await res.json();
-      for (let i = 0; i < 9; i++) {
+      let data = await res.json();
+      for (let i = 0; i < 5; i++) {
         newMovieList["m" + i]["tmdb_data"] = data["results"][i];
         newMovieList["m" + i]["poster"] = "https://image.tmdb.org/t/p/w500" + data["results"][i]['poster_path'];
         newMovieList["m" + i]["original_poster"] = "https://image.tmdb.org/t/p/w500" + data["results"][i]['poster_path'];
       }
- 
- 
-      const test = await fetch (
-        'https://api.themoviedb.org/3/movie/9502?language=en-US&api_key=71b2121843b62cdfd9813cba9fdf7fe3'
+      
+      //get top rated
+      res = await fetch(
+        "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=71b2121843b62cdfd9813cba9fdf7fe3"
       );
-      const test_data = await test.json();
-      newMovieList['m9']['tmdb_data'] = test_data;
-      newMovieList['m9']['poster'] = "https://image.tmdb.org/t/p/w500" + test_data['poster_path'];
-      newMovieList['m9']['original_poster'] = "https://image.tmdb.org/t/p/w500" + test_data['poster_path'];
+      data = await res.json();
+      for (let i = 5; i < 10; i++) {
+        newMovieList["m" + i]["tmdb_data"] = data["results"][i];
+        newMovieList["m" + i]["poster"] = "https://image.tmdb.org/t/p/w500" + data["results"][i]['poster_path'];
+        newMovieList["m" + i]["original_poster"] = "https://image.tmdb.org/t/p/w500" + data["results"][i]['poster_path'];
+      }
+
+      //get custom
+      const list_ids = [578, 9502, 603, 136799, 85]
+      for (let i = 10; i < 15; i++) {
+        res = await fetch (
+          'https://api.themoviedb.org/3/movie/' + list_ids[i-10] + '?language=en-US&api_key=71b2121843b62cdfd9813cba9fdf7fe3'
+        );
+        data = await res.json();
+        newMovieList['m' + i]['tmdb_data'] = data;
+        newMovieList['m' + i]['poster'] = "https://image.tmdb.org/t/p/w500" + data['poster_path'];
+        newMovieList['m' + i]['original_poster'] = "https://image.tmdb.org/t/p/w500" + data['poster_path'];
+      }
       setMovieIDs(newMovieList);
     };
     handleClick();
@@ -135,18 +155,11 @@ function App() {
     console.log(newMovieIDs);
  
  
-    for (let i=7; i < Object.keys(newMovieIDs).length; i++) {   
+    for (let i=0; i < Object.keys(newMovieIDs).length; i++) {   
       movieList.push(newMovieIDs['m' + i]['tmdb_data']['title']);
       moviePosterList.push(newMovieIDs['m' + i]['original_poster']);
       phobiaList.push(phobia || 'nothing');
     };
- 
- 
-    console.log('finished making lists');
-    console.log(movieList);
-    console.log(moviePosterList);
-    console.log(phobiaList);
- 
  
     async function fetchData(movies, moviePosters, phobias) {
       if (movies.length !== moviePosters.length || movies.length !== phobias.length) {
@@ -181,12 +194,12 @@ function App() {
     const responseList = await fetchData(movieList, moviePosterList, phobiaList);
  
  
-    for (let i=7; i < (responseList.length + 7); i++) {
-      if (responseList[i-7]['movieHasPhobia'] && !responseList[i-7]['posterHasPhobia']) {
+    for (let i=0; i < responseList.length; i++) {
+      if (responseList[i]['movieHasPhobia'] && !responseList[i]['posterHasPhobia']) {
         newMovieIDs['m' + i]['poster'] = 'https://placehold.co/600x400/yellow/black';
-      } else if (responseList[i-7]['posterHasPhobia'] && !responseList[i-7]['movieHasPhobia']) {
+      } else if (responseList[i]['posterHasPhobia'] && !responseList[i]['movieHasPhobia']) {
         newMovieIDs['m' + i]['poster'] = 'https://placehold.co/600x400/red/white';
-      } else if (responseList[i-7]['posterHasPhobia'] && responseList[i-7]['movieHasPhobia']) {
+      } else if (responseList[i]['posterHasPhobia'] && responseList[i]['movieHasPhobia']) {
         newMovieIDs['m' + i]['poster'] = 'https://placehold.co/600x400/red/black';
       } else {
         newMovieIDs['m' + i]['poster'] = newMovieIDs['m' + i]['original_poster'];
@@ -318,20 +331,24 @@ function App() {
                     </div>
                   </div>
 
-                  <h2 id="browse-header">Browse</h2>
-                  <div className="browse-list">
-                    <div className="movie-list">
-                      {/* <MovieList
-                        movieList={moviePostersBrowseList1}
-                        phobiaResults={phobiaResults1}
-                      /> */}
-                    </div>
+                  <h2 id="browse-header">Top Rated</h2>
+                  <div className="top-rated-list">
                     <div className="movie-list">
                       <MovieCard2 movie_data={movieIDs["m5"]} />
                       <MovieCard2 movie_data={movieIDs["m6"]} />
                       <MovieCard2 movie_data={movieIDs["m7"]} />
                       <MovieCard2 movie_data={movieIDs["m8"]} />
                       <MovieCard2 movie_data={movieIDs["m9"]} />
+                    </div>
+                  </div>
+                  <h2 id="browse-header">Browse</h2>
+                  <div className="browse-list">
+                    <div className="movie-list">
+                      <MovieCard2 movie_data={movieIDs["m10"]} />
+                      <MovieCard2 movie_data={movieIDs["m11"]} />
+                      <MovieCard2 movie_data={movieIDs["m12"]} />
+                      <MovieCard2 movie_data={movieIDs["m13"]} />
+                      <MovieCard2 movie_data={movieIDs["m14"]} />
                     </div>
                   </div>
                 </div>
