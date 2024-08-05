@@ -249,27 +249,19 @@ function App() {
               <main>
                 <div>
                   <div className="phobia-toggles">
-                    <ToggleButton
-                      className="phobia-toggle-btn"
-                      onClick={togglePhobia}
-                      isToggled={phobia.includes("spiders")}
-                    >
-                      spiders
-                    </ToggleButton>
-                    <ToggleButton
-                      className="phobia-toggle-btn"
-                      onClick={togglePhobia}
-                      isToggled={phobia.includes("snakes")}
-                    >
-                      snakes
-                    </ToggleButton>
-                    <ToggleButton
-                      className="phobia-toggle-btn"
-                      onClick={togglePhobia}
-                      isToggled={phobia.includes("blood")}
-                    >
-                      blood
-                    </ToggleButton>
+                    {phobia
+                      .split(",")
+                      .filter(Boolean)
+                      .map((phobiaName) => (
+                        <ToggleButton
+                          key={phobiaName}
+                          className="phobia-toggle-btn"
+                          onClick={() => togglePhobia(phobiaName)}
+                          isToggled={phobia.includes(phobiaName)}
+                        >
+                          {phobiaName}
+                        </ToggleButton>
+                      ))}
                     <Button className="add-phobia-btn" onClick={openPopUp}>
                       +
                     </Button>
