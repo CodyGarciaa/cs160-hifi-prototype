@@ -47,17 +47,29 @@ function App() {
   // ex. phobia = "snakes, holes, blood"
   const [phobia, setPhobia] = useState("");
 
-  // if to be added phobia already not in phobia string, add it,
-  // if it is already in the phobia string, remove it.
   const togglePhobia = (phobiaName) => {
     setPhobia((prevPhobias) => {
       const phobiaArray = prevPhobias.split(",").filter(Boolean);
       if (phobiaArray.includes(phobiaName)) {
         return phobiaArray.filter((p) => p !== phobiaName).join(",");
       } else {
-        return [...phobiaArray, phobiaName].join(",");
+        return [phobiaName, ...phobiaArray].join(",");
       }
     });
+  };
+
+  const getDisplayPhobias = () => {
+    const originalPhobias = ["spiders", "snakes", "blood"];
+    const phobiaArray = phobia.split(",").filter(Boolean);
+    const toggledPhobias = phobiaArray.filter(
+      (p) => !originalPhobias.includes(p)
+    );
+
+    if (toggledPhobias.length > 0) {
+      return [...toggledPhobias, ...originalPhobias].slice(0, 3);
+    } else {
+      return originalPhobias;
+    }
   };
 
   const helperLabel = [
@@ -71,12 +83,19 @@ function App() {
     "m7",
     "m8",
     "m9",
+    "m10",
+    "m11",
+    "m12",
+    "m13",
+    "m14"
   ];
   const movieList = {};
   helperLabel.forEach((key) => {
     // movieList[key] = {'title': 'title', 'poster': 'https://placehold.co/600x400'};
     movieList[key] = {
       tmdb_data: { title: "title", poster: "https://placehold.co/600x400" },
+      original_poster: 'https://placehold.co/600x400',
+      poster: 'https://placehold.co/600x400',
       phobia: "snakes",
       scenes: {},
     };
@@ -86,81 +105,112 @@ function App() {
 
   useEffect(() => {
     const handleClick = async () => {
-      var newMovieList = { ...movieList };
-      const res = await fetch(
+      const newMovieList = { ...movieList };
+      //get new releases
+      let res = await fetch(
         "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=71b2121843b62cdfd9813cba9fdf7fe3"
       );
-      const data = await res.json();
-      for (let i = 0; i < 10; i++) {
+      let data = await res.json();
+      for (let i = 0; i < 5; i++) {
         newMovieList["m" + i]["tmdb_data"] = data["results"][i];
+        newMovieList["m" + i]["poster"] = "https://image.tmdb.org/t/p/w500" + data["results"][i]['poster_path'];
+        newMovieList["m" + i]["original_poster"] = "https://image.tmdb.org/t/p/w500" + data["results"][i]['poster_path'];
+      }
+      
+      //get top rated
+      res = await fetch(
+        "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=71b2121843b62cdfd9813cba9fdf7fe3"
+      );
+      data = await res.json();
+      for (let i = 5; i < 10; i++) {
+        newMovieList["m" + i]["tmdb_data"] = data["results"][i];
+        newMovieList["m" + i]["poster"] = "https://image.tmdb.org/t/p/w500" + data["results"][i]['poster_path'];
+        newMovieList["m" + i]["original_poster"] = "https://image.tmdb.org/t/p/w500" + data["results"][i]['poster_path'];
+      }
+
+      //get custom
+      const list_ids = [578, 9502, 603, 136799, 85]
+      for (let i = 10; i < 15; i++) {
+        res = await fetch (
+          'https://api.themoviedb.org/3/movie/' + list_ids[i-10] + '?language=en-US&api_key=71b2121843b62cdfd9813cba9fdf7fe3'
+        );
+        data = await res.json();
+        newMovieList['m' + i]['tmdb_data'] = data;
+        newMovieList['m' + i]['poster'] = "https://image.tmdb.org/t/p/w500" + data['poster_path'];
+        newMovieList['m' + i]['original_poster'] = "https://image.tmdb.org/t/p/w500" + data['poster_path'];
       }
       setMovieIDs(newMovieList);
     };
     handleClick();
   }, []);
+ 
 
-  const kungFuPanda =
-    "https://m.media-amazon.com/images/M/MV5BODJkZTZhMWItMDI3Yy00ZWZlLTk4NjQtOTI1ZjU5NjBjZTVjXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg";
-  const insideOut2 = "https://m.media-amazon.com/images/I/714xn6rxXSL.jpg";
-  const jaws = "https://m.media-amazon.com/images/I/616z7DnWGmL.jpg";
-  const snakesOnAPlane =
-    "https://m.media-amazon.com/images/M/MV5BZDY3ODM2YTgtYTU5NC00MTE4LTkzNjktMzNhZWZmMzJjMWRjXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg";
-  const indianaJones =
-    "https://m.media-amazon.com/images/I/81UOBSDQh0L._AC_UF894,1000_QL80_.jpg";
-
-  const moviePostersBrowseList1 = [
-    { src: kungFuPanda, title: "Kung Fu Panda" },
-    { src: insideOut2, title: "Inside Out 2" },
-    { src: jaws, title: "Jaws" },
-    { src: snakesOnAPlane, title: "Snakes On A Plane" },
-    { src: indianaJones, title: "Indiana Jones Raiders of the Lost Ark" },
-  ];
-
-  const fetchPhobiaResultsForList = async (movieList, phobia) => {
-    const results = [];
-
-    for (let i = 0; i < movieList.length; i++) {
-      const movie = movieList[i];
-      try {
-        const response = await fetch(
-          "https://noggin.rea.gent/meaningful-wallaby-5570",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization:
-                "Bearer rg_v1_8knokoxa4241zf4bc9w2nibk21i3r2a6m9m7_ngk",
-            },
-            body: JSON.stringify({
-              moviePoster: movie.src,
-              phobia: phobia,
-              movie: movie.title,
-            }),
-          }
-        );
-        const data = await response.json();
-        results[i] = data;
-      } catch (error) {
-        console.error("Error fetching phobia results:", error);
-        results[i] = { movieHasPhobia: false, posterHasPhobia: false };
+  const fetchPhobiaResultsForList = async () => {
+    let movieList = [];
+    let moviePosterList = [];
+    let phobiaList = [];
+    let newMovieIDs = { ...movieIDs };
+   
+    console.log('start function');
+    console.log(newMovieIDs);
+ 
+ 
+    for (let i=0; i < Object.keys(newMovieIDs).length; i++) {   
+      movieList.push(newMovieIDs['m' + i]['tmdb_data']['title']);
+      moviePosterList.push(newMovieIDs['m' + i]['original_poster']);
+      phobiaList.push(phobia || 'nothing');
+    };
+ 
+    async function fetchData(movies, moviePosters, phobias) {
+      if (movies.length !== moviePosters.length || movies.length !== phobias.length) {
+          throw new Error("Movies, moviePosters, and phobias arrays must have the same length");
+      }
+ 
+ 
+      console.log('start noggin');
+ 
+ 
+      const fetchPromises = movies.map((movie, index) => {
+          return fetch('https://noggin.rea.gent/constant-bee-3994', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: 'Bearer rg_v1_99cjtugm4sssr6j45uykjpnqho7clnwntgjo_ngk',
+              },
+              body: JSON.stringify({
+                  movie: movie,
+                  moviePoster: moviePosters[index],
+                  phobia: phobias[index],
+              }),
+          }).then(response => response.json());
+      });
+ 
+ 
+      const responseList = await Promise.all(fetchPromises);
+      return responseList;
+    }
+ 
+ 
+    const responseList = await fetchData(movieList, moviePosterList, phobiaList);
+ 
+ 
+    for (let i=0; i < responseList.length; i++) {
+      if (responseList[i]['movieHasPhobia'] && !responseList[i]['posterHasPhobia']) {
+        newMovieIDs['m' + i]['poster'] = 'https://placehold.co/600x400/yellow/black';
+      } else if (responseList[i]['posterHasPhobia'] && !responseList[i]['movieHasPhobia']) {
+        newMovieIDs['m' + i]['poster'] = 'https://placehold.co/600x400/red/white';
+      } else if (responseList[i]['posterHasPhobia'] && responseList[i]['movieHasPhobia']) {
+        newMovieIDs['m' + i]['poster'] = 'https://placehold.co/600x400/red/black';
+      } else {
+        newMovieIDs['m' + i]['poster'] = newMovieIDs['m' + i]['original_poster'];
       }
     }
-
-    return results;
+ 
+ 
+    setMovieIDs(newMovieIDs);
+    console.log('finished noggin');
   };
-
-  const fetchPhobiaResults = async () => {
-    const results1 = await fetchPhobiaResultsForList(
-      moviePostersBrowseList1,
-      phobia
-    );
-    // const results2 = await fetchPhobiaResultsForList(moviePostersBrowseList2, phobia);
-    // const results3 = await fetchPhobiaResultsForList(moviePostersBrowseList3, phobia);
-
-    setPhobiaResults1(results1);
-    // setPhobiaResults2(results2);
-    // setPhobiaResults3(results3);
-  };
+ 
 
   const [triggers, setTriggers] = useState([
     {
@@ -249,27 +299,16 @@ function App() {
               <main>
                 <div>
                   <div className="phobia-toggles">
-                    <ToggleButton
-                      className="phobia-toggle-btn"
-                      onClick={togglePhobia}
-                      isToggled={phobia.includes("spiders")}
-                    >
-                      spiders
-                    </ToggleButton>
-                    <ToggleButton
-                      className="phobia-toggle-btn"
-                      onClick={togglePhobia}
-                      isToggled={phobia.includes("snakes")}
-                    >
-                      snakes
-                    </ToggleButton>
-                    <ToggleButton
-                      className="phobia-toggle-btn"
-                      onClick={togglePhobia}
-                      isToggled={phobia.includes("blood")}
-                    >
-                      blood
-                    </ToggleButton>
+                    {getDisplayPhobias().map((phobiaName) => (
+                      <ToggleButton
+                        key={phobiaName}
+                        className="phobia-toggle-btn"
+                        onClick={() => togglePhobia(phobiaName)}
+                        isToggled={phobia.includes(phobiaName)}
+                      >
+                        {phobiaName}
+                      </ToggleButton>
+                    ))}
                     <Button className="add-phobia-btn" onClick={openPopUp}>
                       +
                     </Button>
@@ -292,37 +331,8 @@ function App() {
                     </div>
                   </div>
 
-                  <h2 id="browse-header">Browse</h2>
-                  <div className="browse-list">
-                    <div className="movie-list">
-                      {/* {moviePostersBrowseList.map((movie, index) => {
-                        const result = phobiaResults[index];
-                        let posterSrc = movie.src;
-                        console.log('DEBUG: before posterSrc=' + posterSrc);
-
-                        if (result) {
-                          if (result.posterHasPhobia) {
-                            posterSrc = ''; // Set to empty string for gray box
-                          } else if (result.movieHasPhobia) {
-                            posterSrc = 'yellow'; // Set to 'yellow' for yellow box
-                          }
-                        }
-                        console.log('DEBUG: after posterSrc=' + posterSrc);
-
-                        return (
-                          <MovieCard key={index} image={posterSrc} title={movie.title} />
-                        );
-                      })}        */}
-
-                      <MovieList
-                        movieList={moviePostersBrowseList1}
-                        phobiaResults={phobiaResults1}
-                      />
-                      {/* <MovieList
-                        movieList={moviePostersBrowseList2}
-                        phobiaResults={phobiaResults2}
-                      /> */}
-                    </div>
+                  <h2 id="browse-header">Top Rated</h2>
+                  <div className="top-rated-list">
                     <div className="movie-list">
                       <MovieCard2 movie_data={movieIDs["m5"]} />
                       <MovieCard2 movie_data={movieIDs["m6"]} />
@@ -331,14 +341,20 @@ function App() {
                       <MovieCard2 movie_data={movieIDs["m9"]} />
                     </div>
                   </div>
-
-                  {/* <div id="test-playing">
-                      <h1>My YouTube Player</h1>
-                      <youtubeplayer videoId={"H7Apf1NxXkY"} />
-                    </div> */}
+                  <h2 id="browse-header">Browse</h2>
+                  <div className="browse-list">
+                    <div className="movie-list">
+                      <MovieCard2 movie_data={movieIDs["m10"]} />
+                      <MovieCard2 movie_data={movieIDs["m11"]} />
+                      <MovieCard2 movie_data={movieIDs["m12"]} />
+                      <MovieCard2 movie_data={movieIDs["m13"]} />
+                      <MovieCard2 movie_data={movieIDs["m14"]} />
+                    </div>
+                  </div>
                 </div>
 
                 <nav>
+                  <button onClick={fetchPhobiaResultsForList}> testing </button>
                   <Link to="/CustomTriggers">CustomTriggers</Link>
                   <br />
                   <Link to="/AddCustomTriggerForm">AddCustomTriggerForm</Link>

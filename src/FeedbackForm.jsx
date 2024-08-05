@@ -19,7 +19,7 @@ export default function FeedbackForm() {
   const scenes = movie_data["scenes"];
 
   const goToFeedbackMessage = () => {
-    navigate("/FeedbackMessage");
+    navigate("/FeedbackMessage", { state: { movie_data: movie_data } });
   };
 
   const goToMovieDescription = () => {
