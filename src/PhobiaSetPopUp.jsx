@@ -8,8 +8,8 @@ import Button from "./Button.jsx";
 const PhobiaSetPopUp = ({ isVisible, onClose, phobia, togglePhobia }) => {
 
     const navigate = useNavigate();
-    const goToAddCustomTriggerForm = () => {
-        navigate("/AddCustomTriggerForm");
+    const goToCustomTriggers = () => {
+        navigate("/CustomTriggers");
     };
 
     return (
@@ -28,7 +28,7 @@ const PhobiaSetPopUp = ({ isVisible, onClose, phobia, togglePhobia }) => {
                     <h2>Your Custom Phobia Triggers</h2>
                     <div className="custom-phobia-btns">
                         <ToggleButton className="phobia-toggle-btn">holes/small patterns</ToggleButton>
-                        <Button className="pop-up-add-phobia-btn" onClick={goToAddCustomTriggerForm}>+</Button>
+                        <Button className="pop-up-add-phobia-btn" onClick={goToCustomTriggers}>+</Button>
                     </div>
                     <br/>
                     <br/>
