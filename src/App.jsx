@@ -211,7 +211,7 @@ function App() {
                   </div>
 
                   <SearchBar onSearch={handleSearch} />
-                  <button onClick={fetchPhobiaResults}>Check Phobias</button>
+                  {/* <button onClick={fetchPhobiaResults}>Check Phobias</button> */}
 
                   <h2>New Releases</h2>
                   <div className="new-releases-list">

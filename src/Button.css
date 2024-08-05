@@ -40,6 +40,16 @@
   min-width: 30px;
 }
 
+.pop-up-add-phobia-btn {
+  border: 1px solid #6B6B6B;
+  border-radius: 15px;
+  background-color: white;
+  font-size: 20px;
+  padding: 0;
+  min-width: 108px;
+  font-size: 30px;
+}
+
 .scene-descriptions-button {
   border: 1px solid #6951FF;
   background-color: white;

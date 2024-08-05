@@ -58,3 +58,11 @@
     column-gap: 5px; 
     margin-bottom: 30px;
 }
+
+.custom-phobia-btns {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 10px; 
+    margin-bottom: 30px;
+}
