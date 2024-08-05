@@ -5,7 +5,7 @@ import './PhobiaSetPopUp.css';
 import ToggleButton from './ToggleButton.jsx';
 import Button from "./Button.jsx";
 
-const PhobiaSetPopUp = ({ isVisible, onClose }) => {
+const PhobiaSetPopUp = ({ isVisible, onClose, phobia, togglePhobia }) => {
 
     const navigate = useNavigate();
     const goToAddCustomTriggerForm = () => {
@@ -18,11 +18,11 @@ const PhobiaSetPopUp = ({ isVisible, onClose }) => {
                 <div className="popup-content" onClick={(e) => e.stopPropagation()}>
                     <h2>Common Phobia Triggers</h2>
                     <div className="phobia-toggles-popup">
-                        <ToggleButton className="phobia-toggle-btn">spiders</ToggleButton>
-                        <ToggleButton className="phobia-toggle-btn">snakes</ToggleButton>
-                        <ToggleButton className="phobia-toggle-btn">blood</ToggleButton>
-                        <ToggleButton className="phobia-toggle-btn">heights</ToggleButton>
-                        <ToggleButton className="phobia-toggle-btn">flying</ToggleButton>
+                        <ToggleButton className="phobia-toggle-btn" onClick={togglePhobia} isToggled={phobia.includes("spiders")}>spiders</ToggleButton>
+                        <ToggleButton className="phobia-toggle-btn" onClick={togglePhobia} isToggled={phobia.includes("snakes")}>snakes</ToggleButton>
+                        <ToggleButton className="phobia-toggle-btn" onClick={togglePhobia} isToggled={phobia.includes("blood")}>blood</ToggleButton>
+                        <ToggleButton className="phobia-toggle-btn" onClick={togglePhobia} isToggled={phobia.includes("heights")}>heights</ToggleButton>
+                        <ToggleButton className="phobia-toggle-btn" onClick={togglePhobia} isToggled={phobia.includes("flying")}>flying</ToggleButton>
                     </div>
 
                     <h2>Your Custom Phobia Triggers</h2>

@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ToggleButton.css';
 
-const ToggleButton = ({ children, className }) => {
+const ToggleButton = ({ children, className, onClick, isToggled}) => {
     const [isOn, setIsOn] = useState(false);
+
+    useEffect(() => {
+        setIsOn(isToggled);
+    }, [isToggled])
 
     const handleClick = () => {
         setIsOn(!isOn);
+        onClick(children);
     };
 
     return (

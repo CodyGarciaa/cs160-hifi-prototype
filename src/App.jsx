@@ -23,6 +23,7 @@ import MovieList from "./MovieList.jsx";
 
 function App() {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+
   const [phobiaResults1, setPhobiaResults1] = useState([]);
   const [phobiaResults2, setPhobiaResults2] = useState([]);
   const [phobiaResults3, setPhobiaResults3] = useState([]);
@@ -40,7 +41,25 @@ function App() {
     // replace this with  actual search logic
   };
 
-  const phobia = "snake"; // phobia to test for now
+  // const phobia = "snake"; // phobia to test for now
+
+  // phobia contains a string with all phobias
+  // ex. phobia = "snakes, holes, blood"
+  const [phobia, setPhobia] = useState("");
+
+  // if to be added phobia already not in phobia string, add it,
+  // if it is already in the phobia string, remove it. 
+  const togglePhobia = (phobiaName) => {
+    setPhobia((prevPhobias) => {
+      const phobiaArray = prevPhobias.split(',').filter(Boolean);
+      if (phobiaArray.includes(phobiaName)) {
+        return phobiaArray.filter((p) => p !== phobiaName).join(',');
+      } else {
+        return [...phobiaArray, phobiaName].join(',');
+      }
+    });
+  };
+
 
   const helperLabel = [
     "m0",
@@ -198,13 +217,13 @@ function App() {
               <main>
                 <div>
                   <div className="phobia-toggles">
-                    <ToggleButton className="phobia-toggle-btn">
+                    <ToggleButton className="phobia-toggle-btn" onClick={togglePhobia} isToggled={phobia.includes("spiders")}>
                       spiders
                     </ToggleButton>
-                    <ToggleButton className="phobia-toggle-btn">
+                    <ToggleButton className="phobia-toggle-btn" onClick={togglePhobia} isToggled={phobia.includes("snakes")}>
                       snakes
                     </ToggleButton>
-                    <ToggleButton className="phobia-toggle-btn">
+                    <ToggleButton className="phobia-toggle-btn" onClick={togglePhobia} isToggled={phobia.includes("blood")}>
                       blood
                     </ToggleButton>
                     <Button className="add-phobia-btn" onClick={openPopUp}>+</Button>
@@ -212,6 +231,7 @@ function App() {
 
                   <SearchBar onSearch={handleSearch} />
                   {/* <button onClick={fetchPhobiaResults}>Check Phobias</button> */}
+                  <button onClick={console.log(phobia)}>Print current phobia</button>
 
                   <h2>New Releases</h2>
                   <div className="new-releases-list">
@@ -286,7 +306,7 @@ function App() {
                   </Link>
                 </nav>
               </main>
-              <PhobiaSetPopUp isVisible={isPopUpVisible} onClose={closePopUp} />
+              <PhobiaSetPopUp isVisible={isPopUpVisible} onClose={closePopUp} phobia={phobia} togglePhobia={togglePhobia} />
             </div>
           }
         />
