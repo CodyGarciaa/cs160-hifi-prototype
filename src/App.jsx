@@ -138,7 +138,7 @@ function App() {
     for (let i=7; i < Object.keys(newMovieIDs).length; i++) {   
       movieList.push(newMovieIDs['m' + i]['tmdb_data']['title']);
       moviePosterList.push(newMovieIDs['m' + i]['original_poster']);
-      phobiaList.push(phobia);
+      phobiaList.push(phobia || 'nothing');
     };
  
  
@@ -158,11 +158,11 @@ function App() {
  
  
       const fetchPromises = movies.map((movie, index) => {
-          return fetch('https://noggin.rea.gent/depressed-fowl-5744', {
+          return fetch('https://noggin.rea.gent/constant-bee-3994', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
-                  Authorization: 'Bearer rg_v1_d6e1hm3iojgqhgr434h84t27d44p9dxaj3a2_ngk',
+                  Authorization: 'Bearer rg_v1_99cjtugm4sssr6j45uykjpnqho7clnwntgjo_ngk',
               },
               body: JSON.stringify({
                   movie: movie,
@@ -188,6 +188,8 @@ function App() {
         newMovieIDs['m' + i]['poster'] = 'https://placehold.co/600x400/red/white';
       } else if (responseList[i-7]['posterHasPhobia'] && responseList[i-7]['movieHasPhobia']) {
         newMovieIDs['m' + i]['poster'] = 'https://placehold.co/600x400/red/black';
+      } else {
+        newMovieIDs['m' + i]['poster'] = newMovieIDs['m' + i]['original_poster'];
       }
     }
  
