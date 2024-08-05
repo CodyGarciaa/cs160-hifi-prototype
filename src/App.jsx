@@ -47,17 +47,29 @@ function App() {
   // ex. phobia = "snakes, holes, blood"
   const [phobia, setPhobia] = useState("");
 
-  // if to be added phobia already not in phobia string, add it,
-  // if it is already in the phobia string, remove it.
   const togglePhobia = (phobiaName) => {
     setPhobia((prevPhobias) => {
       const phobiaArray = prevPhobias.split(",").filter(Boolean);
       if (phobiaArray.includes(phobiaName)) {
         return phobiaArray.filter((p) => p !== phobiaName).join(",");
       } else {
-        return [...phobiaArray, phobiaName].join(",");
+        return [phobiaName, ...phobiaArray].join(",");
       }
     });
+  };
+
+  const getDisplayPhobias = () => {
+    const originalPhobias = ["spiders", "snakes", "blood"];
+    const phobiaArray = phobia.split(",").filter(Boolean);
+    const toggledPhobias = phobiaArray.filter(
+      (p) => !originalPhobias.includes(p)
+    );
+
+    if (toggledPhobias.length > 0) {
+      return [...toggledPhobias, ...originalPhobias].slice(0, 3);
+    } else {
+      return originalPhobias;
+    }
   };
 
   const helperLabel = [
@@ -249,19 +261,16 @@ function App() {
               <main>
                 <div>
                   <div className="phobia-toggles">
-                    {phobia
-                      .split(",")
-                      .filter(Boolean)
-                      .map((phobiaName) => (
-                        <ToggleButton
-                          key={phobiaName}
-                          className="phobia-toggle-btn"
-                          onClick={() => togglePhobia(phobiaName)}
-                          isToggled={phobia.includes(phobiaName)}
-                        >
-                          {phobiaName}
-                        </ToggleButton>
-                      ))}
+                    {getDisplayPhobias().map((phobiaName) => (
+                      <ToggleButton
+                        key={phobiaName}
+                        className="phobia-toggle-btn"
+                        onClick={() => togglePhobia(phobiaName)}
+                        isToggled={phobia.includes(phobiaName)}
+                      >
+                        {phobiaName}
+                      </ToggleButton>
+                    ))}
                     <Button className="add-phobia-btn" onClick={openPopUp}>
                       +
                     </Button>
