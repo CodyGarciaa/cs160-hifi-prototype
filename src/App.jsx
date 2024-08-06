@@ -412,9 +412,6 @@ function App() {
                   <br />
                   <Link to="/Account">Account</Link>
                   <br />
-                  <Link to="/PhobiaSceneDescription">
-                    PhobiaSceneDescription
-                  </Link>
                 </nav>
               </main>
               <PhobiaSetPopUp

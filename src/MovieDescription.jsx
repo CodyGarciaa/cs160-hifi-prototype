@@ -25,7 +25,7 @@ export default function MovieDescription() {
  const { movie_data } = location.state || {};
  
  const title = movie_data['tmdb_data']['title'];
- const poster = "https://image.tmdb.org/t/p/w500" + movie_data['tmdb_data']['poster_path'];
+ const poster = movie_data['poster'];
  const overview = movie_data['tmdb_data']['overview'];
 
 let starRating;
@@ -129,13 +129,17 @@ let starRating;
               </div> */}
             </div>
           </div>
-        
-          <div className="movie-poster-container">
+          <div className="poster-container">
             <img
-              className="movie-poster-other"
+              className={`movie-poster ${movie_data.cssClass || ''}`}
               src={poster}
-              alt={`${title} Poster`}
+              alt={title}
             />
+            {movie_data.showWarningSymbol && (
+              <div className="warning-overlay">
+                <div className="warning-symbol"></div>
+              </div>
+            )}
           </div>
         
         </header>
