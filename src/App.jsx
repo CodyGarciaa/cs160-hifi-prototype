@@ -224,29 +224,27 @@ function App() {
         !responseList[i]["posterHasPhobia"]
       ) {
         // newMovieIDs["m" + i]["poster"] = "https://placehold.co/600x400/yellow/black";
-        newMovieIDs["m" + i]["cssClass"] = '';
+        newMovieIDs["m" + i]["cssClass"] = "";
         newMovieIDs["m" + i]["showWarningSymbol"] = true;
       } else if (
         responseList[i]["posterHasPhobia"] &&
         !responseList[i]["movieHasPhobia"]
       ) {
         // newMovieIDs["m" + i]["poster"] = "https://placehold.co/600x400/red/white";
-        newMovieIDs["m" + i]["cssClass"] = 'blur-poster';
+        newMovieIDs["m" + i]["cssClass"] = "blur-poster";
         newMovieIDs["m" + i]["showWarningSymbol"] = false;
-
       } else if (
         responseList[i]["posterHasPhobia"] &&
         responseList[i]["movieHasPhobia"]
       ) {
         // newMovieIDs["m" + i]["poster"] = "https://placehold.co/600x400/red/black";
-        newMovieIDs["m" + i]["cssClass"] = 'blur-poster';
+        newMovieIDs["m" + i]["cssClass"] = "blur-poster";
         newMovieIDs["m" + i]["showWarningSymbol"] = true;
       } else {
         // newMovieIDs["m" + i]["poster"] = newMovieIDs["m" + i]["original_poster"];
-        newMovieIDs["m" + i]["cssClass"] = '';
+        newMovieIDs["m" + i]["cssClass"] = "";
         newMovieIDs["m" + i]["showWarningSymbol"] = false;
       }
-
     }
 
     setMovieIDs(newMovieIDs);
@@ -457,7 +455,10 @@ function App() {
           path="/PhobiaSceneDescription"
           element={<PhobiaSceneDescription phobiaArray={phobia.split(",")} />} // Pass phobiaArray as prop
         />
-        <Route path="/MovieDescription" element={<MovieDescription />} />
+        <Route
+          path="/MovieDescription"
+          element={<MovieDescription phobiaArray={phobia.split(",")} />}
+        />
         <Route path="/Stream" element={<Stream />} />
       </Routes>
     </Router>
