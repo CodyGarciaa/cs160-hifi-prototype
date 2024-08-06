@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
@@ -17,11 +16,14 @@ import PhobiaSceneDescription from "./PhobiaSceneDescription.jsx";
 import MovieCard from "./MovieCard.jsx";
 import MovieCard2 from "./MovieCard2.jsx";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import PhobiaSetPopUp from "./PhobiaSetPopUp.jsx";
 import MovieList from "./MovieList.jsx";
 
 function App() {
+  // const location = useLocation();
+  // const { movie_data } = location.state || {};
+  
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
 
   const [phobiaResults1, setPhobiaResults1] = useState([]);
@@ -93,11 +95,13 @@ function App() {
   helperLabel.forEach((key) => {
     // movieList[key] = {'title': 'title', 'poster': 'https://placehold.co/600x400'};
     movieList[key] = {
+      mIndex: parseInt(key.replace('m', '')),
       tmdb_data: { title: "title", poster: "https://placehold.co/600x400" },
       original_poster: 'https://placehold.co/600x400',
       poster: 'https://placehold.co/600x400',
       phobia: "snakes",
       scenes: {},
+      updated: false
     };
   });
 
@@ -140,20 +144,18 @@ function App() {
         newMovieList['m' + i]['original_poster'] = "https://image.tmdb.org/t/p/w500" + data['poster_path'];
       }
       setMovieIDs(newMovieList);
+
+
     };
     handleClick();
+    console.log('rip ran again');
   }, []);
  
-
   const fetchPhobiaResultsForList = async () => {
     let movieList = [];
     let moviePosterList = [];
     let phobiaList = [];
     let newMovieIDs = { ...movieIDs };
-   
-    console.log('start function');
-    console.log(newMovieIDs);
- 
  
     for (let i=0; i < Object.keys(newMovieIDs).length; i++) {   
       movieList.push(newMovieIDs['m' + i]['tmdb_data']['title']);
@@ -166,33 +168,34 @@ function App() {
           throw new Error("Movies, moviePosters, and phobias arrays must have the same length");
       }
  
- 
       console.log('start noggin');
  
- 
       const fetchPromises = movies.map((movie, index) => {
-          return fetch('https://noggin.rea.gent/constant-bee-3994', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: 'Bearer rg_v1_99cjtugm4sssr6j45uykjpnqho7clnwntgjo_ngk',
-              },
-              body: JSON.stringify({
-                  movie: movie,
-                  moviePoster: moviePosters[index],
-                  phobia: phobias[index],
-              }),
-          }).then(response => response.json());
+        if (phobiaList[index] == 'nothing') {
+          console.log('skip noggin call');
+          return {
+            "movieHasPhobia": false,
+            "posterHasPhobia": false
+          };
+        }
+        return fetch('https://noggin.rea.gent/constant-bee-3994', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer rg_v1_99cjtugm4sssr6j45uykjpnqho7clnwntgjo_ngk',
+          },
+          body: JSON.stringify({
+            movie: movie,
+            moviePoster: moviePosters[index],
+            phobia: phobias[index],
+          }),
+      }).then(response => response.json());
       });
- 
- 
       const responseList = await Promise.all(fetchPromises);
       return responseList;
     }
  
- 
     const responseList = await fetchData(movieList, moviePosterList, phobiaList);
- 
  
     for (let i=0; i < responseList.length; i++) {
       if (responseList[i]['movieHasPhobia'] && !responseList[i]['posterHasPhobia']) {
@@ -206,10 +209,11 @@ function App() {
       }
     }
  
- 
     setMovieIDs(newMovieIDs);
     console.log('finished noggin');
   };
+
+  // useEffect({fetchPhobiaResultsForList}, [phobia]);
  
 
   const [triggers, setTriggers] = useState([

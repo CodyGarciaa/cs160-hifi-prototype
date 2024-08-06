@@ -33,4 +33,22 @@
   .popuptime {
     margin-left: -110px; /* Add some space between scene name and time */
   }
+
+  .dropdown-description {
+    border: 1px solid #ddd;
+    margin: 5px 0;
+  }
+  
+  .dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    padding: 10px;
+    background-color: #fff;
+  }
   

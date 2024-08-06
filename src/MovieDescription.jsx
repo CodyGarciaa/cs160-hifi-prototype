@@ -65,7 +65,7 @@ let starRating;
 
 
  const goToHome = () => {
-   navigate('/')
+   navigate('/', { state: { movie_data: movie_data } });
  }
 
 
