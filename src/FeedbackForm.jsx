@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./FeedbackForm.css"; // Import the CSS file
+import "./FeedbackForm.css";
 import Button from "./Button.jsx";
 
-export default function FeedbackForm() {
+export default function FeedbackForm({ onSubmit }) {
   const navigate = useNavigate();
   const [selectedButton, setSelectedButton] = useState(null);
   const [textFeedback, setTextFeedback] = useState("");
@@ -50,7 +50,6 @@ export default function FeedbackForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Validate time inputs
     for (const input of timeInputs) {
       if (
         !timeFormat.test(input.popUpTime) ||
@@ -70,10 +69,9 @@ export default function FeedbackForm() {
       vanishTime: input.vanishTime,
     }));
 
-    // You can log or send the values to an API
-    console.log({ correctness, textfeedback, timeinterval });
+    const feedback = { correctness, textfeedback, timeinterval };
 
-    // Navigate to feedback message page
+    onSubmit(title, feedback);
     goToFeedbackMessage();
   };
 
