@@ -69,7 +69,7 @@ const PhobiaSetPopUp = ({
             {triggers.map((trigger) => (
               <ToggleButton
                 key={trigger.id}
-                className="phobia-toggle-btn"
+                className="custom-phobia-toggle-btn"
                 onClick={() => togglePhobia(trigger.triggertitle)}
                 isToggled={phobiaArray.includes(trigger.triggertitle)}
               >

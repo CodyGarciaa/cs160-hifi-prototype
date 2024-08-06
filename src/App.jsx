@@ -253,15 +253,7 @@ function App() {
 
   // useEffect({fetchPhobiaResultsForList}, [phobia]);
 
-  const [triggers, setTriggers] = useState([
-    {
-      id: 1, // Assign a unique id for each trigger
-      triggertitle: "Holes/small patterns",
-      triggersummary:
-        "deep fear of holes or small patterns, including cartoon depictions",
-    },
-    // Add more triggers if needed
-  ]);
+  const [triggers, setTriggers] = useState([]);
 
   const handleAddTrigger = (newTrigger) => {
     setTriggers((prevTriggers) => [

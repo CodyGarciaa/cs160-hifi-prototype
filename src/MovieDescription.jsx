@@ -164,10 +164,8 @@ export default function MovieDescription({ phobiaArray }) {
           <div className="movie-header-text">
             <div className="movie-title">{title}</div>
             <div className="under-title">
-              <div className="year-director">
-                <div className="movie-year">{response["year"]}</div>
-                <div className="movie-director">{response["directors"]}</div>
-              </div>
+              <div className="movie-year">{response["year"]}</div>
+              <div className="movie-director">{response["directors"]}</div>
               <div className="age-rating-runtime">
                 <div className="movie-rated">Rated {response["rated"]}</div>
                 <div className="movie-runtime">{response["runtime"]}</div>
@@ -197,7 +195,7 @@ export default function MovieDescription({ phobiaArray }) {
           </div>
           <div className="poster-container">
             <img
-              className={`movie-poster ${movie_data.cssClass || ""}`}
+              className={`movie-poster-other ${movie_data.cssClass || ""}`}
               src={poster}
               alt={title}
             />

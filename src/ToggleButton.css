@@ -26,3 +26,11 @@
   border: 1px solid #696969;
   background-color: white;
 }
+
+.custom-phobia-toggle-btn {
+  border-radius: 15px;
+  min-width: 108px;
+  min-height: 43px;
+  border: 1px solid #696969;
+  background-color: white;
+}
