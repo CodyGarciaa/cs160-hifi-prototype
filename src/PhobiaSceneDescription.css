@@ -27,3 +27,11 @@ p {
 .warning-sign {
     width: 35px;
 }
+
+.phobia-scene-description {
+    padding: 20px;
+  }
+  
+  .phobia-section {
+    margin-bottom: 20px;
+  }

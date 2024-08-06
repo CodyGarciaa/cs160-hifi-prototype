@@ -13,40 +13,68 @@ export default function PhobiaSceneDescription({ phobiaArray }) {
   const [sceneTimes, setSceneTimes] = useState([]);
   const [sceneDescriptions, setSceneDescriptions] = useState([]);
 
+  const [scenesByPhobia, setScenesByPhobia] = useState({});
+  const [updated, setUpdated] = useState(false);
+
+  const [newMovie_data, setNewMovie_data] = useState(movie_data);
+  const [totalScenes, setTotalScenes] = useState(0);
+
   const title = movie_data["tmdb_data"]["title"];
+  // var updated = movie_data['updated'];
 
   const goToMovieDescription = () => {
-    navigate("/MovieDescription", { state: { movie_data: movie_data } });
+    navigate("/MovieDescription", { state: { movie_data: newMovie_data } });
   };
 
   useEffect(() => {
+    console.log("starting " + phobiaArray.length);
+    console.log(phobiaArray);
+    
+    if (phobiaArray.length == 1 && phobiaArray[0] == '') {
+      console.log('quit');
+      return;
+    }
+    
     const fetchSceneDescriptions = async () => {
-      try {
-        const response = await fetch(
-          "https://noggin.rea.gent/used-cricket-6900",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization:
-                "Bearer rg_v1_fzspyc2lma89i8v5ebsr7o7tmwy4yhurvbl7_ngk",
-            },
-            body: JSON.stringify({
-              movie: title,
-              phobia: phobiaArray.join(","),
-            }),
-          }
-        );
-        const data = await response.json();
-        console.log("Fetched data:", data); // Log the fetched data
-        setSceneTimes(data.time_list);
-        setSceneDescriptions(data.description_list);
-      } catch (error) {
-        console.error("Error fetching scene descriptions:", error);
-      }
+      const response = await fetch(
+        "https://noggin.rea.gent/used-cricket-6900",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer rg_v1_lf8ch4gi35mohmffoivb4zemgniuoagqe5n8_ngk",
+          },
+          body: JSON.stringify({
+            movie: title,
+            phobia: phobiaArray.join(","),
+          }),
+        }
+      ).then(response => response.json());
+
+      const data_copy_helper = { ...newMovie_data };
+      data_copy_helper['scenes'] = response;
+      data_copy_helper['updated'] = true;
+
+      const groupedScenes = response.triggers.reduce((acc, trigger, index) => {
+        const { time_list, description_list } = response.outputs[index];
+        acc[trigger] = time_list.map((time, i) => ({
+          time,
+          description: description_list[i],
+        }));
+        return acc;
+      }, {});
+
+      setScenesByPhobia(groupedScenes);
+      setUpdated(true);
+
+      setNewMovie_data(data_copy_helper);
+
+      const total = Object.values(groupedScenes).reduce((sum, scenes) => sum + scenes.length, 0);
+      setTotalScenes(total);
     };
 
-    if (title && phobiaArray.length > 0) {
+    if (title && phobiaArray.length > 0 & !updated) {
       fetchSceneDescriptions();
     }
   }, [title, phobiaArray]);
@@ -61,22 +89,27 @@ export default function PhobiaSceneDescription({ phobiaArray }) {
       </Button>
 
       <h1>{title}</h1>
-      <p>
-        This movie has {sceneTimes.length} scenes with your trigger
+      <div>
+        This movie has {totalScenes} scenes with your trigger
         <br />
         <br />
         <div className="warning">
           <img src={WarningSing} className="warning-sign" />
           Scene descriptions may contain spoilers!
         </div>
-      </p>
-      {sceneTimes.map((time, index) => (
-        <DropDownDescription
-          key={index}
-          buttonText={`Scene ${index + 1}`}
-          popuptime={`- ${time}`}
-          description={sceneDescriptions[index]}
-        />
+      </div>
+      {Object.keys(scenesByPhobia).map(phobia => (
+        <div key={phobia} className="phobia-section">
+          <h2>{phobia}</h2>
+          {scenesByPhobia[phobia].map((scene, index) => (
+            <DropDownDescription
+              key={index}
+              sceneNumber={index + 1}
+              time={scene.time}
+              description={scene.description}
+            />
+          ))}
+        </div>
       ))}
     </div>
   );
