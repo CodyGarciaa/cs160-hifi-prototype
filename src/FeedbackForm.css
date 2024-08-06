@@ -6,6 +6,8 @@
     /* Maintain margin for the form itself */
     font-size: 14px;
     gap: 10px;
+    position: relative;
+    padding-bottom: 150px;
 }
 
 
@@ -112,4 +114,9 @@
 
 .feedback-h1 {
     margin-top: 40px;
+}
+
+.feedback-form.expanded .submit-button {
+    position: absolute;
+    bottom: 10px;
 }

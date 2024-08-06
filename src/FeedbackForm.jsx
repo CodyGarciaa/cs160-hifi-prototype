@@ -52,8 +52,8 @@ export default function FeedbackForm({ onSubmit }) {
 
     for (const input of timeInputs) {
       if (
-        !timeFormat.test(input.popUpTime) ||
-        !timeFormat.test(input.vanishTime)
+        (input.popUpTime && !timeFormat.test(input.popUpTime)) ||
+        (input.vanishTime && !timeFormat.test(input.vanishTime))
       ) {
         alert(
           "Invalid time format. Please use HH:MM:SS format for all time inputs."
