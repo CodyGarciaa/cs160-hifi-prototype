@@ -449,7 +449,12 @@ function App() {
         />
         <Route
           path="/MovieDescription"
-          element={<MovieDescription phobiaArray={phobia.split(",")} />}
+          element={
+            <MovieDescription
+              phobiaArray={phobia.split(",")}
+              movieFeedback={movieFeedback}
+            />
+          }
         />
         <Route path="/Stream" element={<Stream />} />
       </Routes>
