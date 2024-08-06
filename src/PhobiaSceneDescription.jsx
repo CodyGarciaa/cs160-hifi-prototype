@@ -27,6 +27,14 @@ export default function PhobiaSceneDescription({ phobiaArray }) {
   };
 
   useEffect(() => {
+    console.log("starting " + phobiaArray.length);
+    console.log(phobiaArray);
+    
+    if (phobiaArray.length == 1 && phobiaArray[0] == '') {
+      console.log('quit');
+      return;
+    }
+    
     const fetchSceneDescriptions = async () => {
       const response = await fetch(
         "https://noggin.rea.gent/used-cricket-6900",
@@ -48,9 +56,6 @@ export default function PhobiaSceneDescription({ phobiaArray }) {
       data_copy_helper['scenes'] = response;
       data_copy_helper['updated'] = true;
 
-      // console.log("Fetched data:", response);
-      // setSceneTimes(response.time_list);
-      // setSceneDescriptions(response.description_list);
       const groupedScenes = response.triggers.reduce((acc, trigger, index) => {
         const { time_list, description_list } = response.outputs[index];
         acc[trigger] = time_list.map((time, i) => ({
@@ -85,7 +90,6 @@ export default function PhobiaSceneDescription({ phobiaArray }) {
 
       <h1>{title}</h1>
       <div>
-      {/* <p> */}
         This movie has {totalScenes} scenes with your trigger
         <br />
         <br />
@@ -93,16 +97,7 @@ export default function PhobiaSceneDescription({ phobiaArray }) {
           <img src={WarningSing} className="warning-sign" />
           Scene descriptions may contain spoilers!
         </div>
-      {/* </p> */}
       </div>
-      {/* {sceneTimes.map((time, index) => (
-        <DropDownDescription
-          key={index}
-          buttonText={`Scene ${index + 1}`}
-          popuptime={`${time}`}
-          description={sceneDescriptions[index]}
-        />
-      ))} */}
       {Object.keys(scenesByPhobia).map(phobia => (
         <div key={phobia} className="phobia-section">
           <h2>{phobia}</h2>
