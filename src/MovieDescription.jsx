@@ -97,7 +97,7 @@ export default function MovieDescription({ phobiaArray }) {
       setTotalScenes(total);
     };
 
-    if (title && (phobiaArray.length > 0) & !updated) {
+    if (title && (phobiaArray.length > 0) && !updated) {
       fetchSceneDescriptions();
     }
   }, [title, phobiaArray]);

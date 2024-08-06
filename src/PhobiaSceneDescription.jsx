@@ -74,7 +74,7 @@ export default function PhobiaSceneDescription({ phobiaArray }) {
       setTotalScenes(total);
     };
 
-    if (title && phobiaArray.length > 0 & !updated) {
+    if (title && phobiaArray.length > 0 && !updated) {
       fetchSceneDescriptions();
     }
   }, [title, phobiaArray]);
@@ -99,19 +99,21 @@ export default function PhobiaSceneDescription({ phobiaArray }) {
         </div>
       </div>
       {Object.keys(scenesByPhobia).map(phobia => (
-        <div key={phobia} className="phobia-section">
-          <h2 className="phobia-scene-desc-h2">Scenes with {phobia}</h2>
-          <div className="phobia-dropdowns">
-            {scenesByPhobia[phobia].map((scene, index) => (
-              <DropDownDescription
-                key={index}
-                sceneNumber={index + 1}
-                time={scene.time}
-                description={scene.description}
-              />
-            ))}
+        scenesByPhobia[phobia].length > 0 && (
+          <div key={phobia} className="phobia-section">
+            <h2 className="phobia-scene-desc-h2">Scenes with {phobia}</h2>
+            <div className="phobia-dropdowns">
+              {scenesByPhobia[phobia].map((scene, index) => (
+                <DropDownDescription
+                  key={index}
+                  sceneNumber={index + 1}
+                  time={scene.time}
+                  description={scene.description}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )
       ))}
     </div>
   );
