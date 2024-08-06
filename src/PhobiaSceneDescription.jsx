@@ -88,27 +88,29 @@ export default function PhobiaSceneDescription({ phobiaArray }) {
         />
       </Button>
 
-      <h1>{title}</h1>
-      <div>
-        This movie has {totalScenes} scenes with your trigger
-        <br />
-        <br />
-        <div className="warning">
+      <h1 className="phobia-scene-desc-h1" >{title}</h1>
+      <div className="scene-desc-warnings">
+        <div className="scene-desc-warnings-text">
+          <div className="num-scenes">This movie has {totalScenes} scenes with your trigger</div>
+          <div className="warning">Scene descriptions may contain spoilers!</div>
+        </div>
+        <div className="scene-desc-warnings-img">
           <img src={WarningSing} className="warning-sign" />
-          Scene descriptions may contain spoilers!
         </div>
       </div>
       {Object.keys(scenesByPhobia).map(phobia => (
         <div key={phobia} className="phobia-section">
-          <h2>{phobia}</h2>
-          {scenesByPhobia[phobia].map((scene, index) => (
-            <DropDownDescription
-              key={index}
-              sceneNumber={index + 1}
-              time={scene.time}
-              description={scene.description}
-            />
-          ))}
+          <h2 className="phobia-scene-desc-h2">Scenes with {phobia}</h2>
+          <div className="phobia-dropdowns">
+            {scenesByPhobia[phobia].map((scene, index) => (
+              <DropDownDescription
+                key={index}
+                sceneNumber={index + 1}
+                time={scene.time}
+                description={scene.description}
+              />
+            ))}
+          </div>
         </div>
       ))}
     </div>

@@ -1,14 +1,12 @@
 .phobia-scene-description {
     display: flex;
     flex-direction: column;
-    margin: 20px;
-    margin-top: 50px;
+    margin-top: 50px; 
     gap: 20px;
 }
 
 h1 {
     font-size: 36px;
-    font-weight: bold;
 }
 
 p {
@@ -16,22 +14,56 @@ p {
 }
 
 .warning {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 20px; */
+    font-size: 14px;
     color: #ff0000;
 }
 
 .warning-sign {
-    width: 35px;
+    width: 50px;
 }
 
 .phobia-scene-description {
     padding: 20px;
-  }
-  
-  .phobia-section {
-    margin-bottom: 20px;
-  }
+}
+
+.phobia-section {
+margin-bottom: 20px;
+}
+
+.phobia-scene-desc-h1 {
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.phobia-scene-desc-h2 {
+    margin-bottom: 15px;
+}
+
+.scene-desc-warnings {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.scene-desc-warnings-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.num-scenes {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.phobia-dropdowns {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

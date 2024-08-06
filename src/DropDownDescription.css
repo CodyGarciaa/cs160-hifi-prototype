@@ -35,20 +35,26 @@
   }
 
   .dropdown-description {
-    border: 1px solid #ddd;
+    border: 2px solid black;
+    border-radius: 5px;
     margin: 5px 0;
+    font-weight: 600;
   }
   
   .dropdown-header {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background-color: #f0f0f0;
+    background-color: white;
     cursor: pointer;
+    /* border: 1px solid black; */
+    border-radius: 5px;
   }
   
   .dropdown-content {
     padding: 10px;
     background-color: #fff;
+    padding: 5px 20px;
+    padding-top: 0;
   }
   
