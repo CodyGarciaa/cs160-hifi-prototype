@@ -21,6 +21,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import PhobiaSetPopUp from "./PhobiaSetPopUp.jsx";
 import MovieList from "./MovieList.jsx";
 import StreamPopUp from "./StreamPopUp.jsx";
+import UserIcon from "./user.svg";
 
 function App() {
   // const location = useLocation();
@@ -335,7 +336,7 @@ function App() {
                   </h1>
                 </div>
                 <div className="profile-button">
-                  <Button className="back-btn">👤</Button>
+                  <img src={UserIcon} />
                 </div>
               </header>
 
@@ -359,9 +360,6 @@ function App() {
 
                   <SearchBar onSearch={handleSearch} />
                   {/* <button onClick={fetchPhobiaResults}>Check Phobias</button> */}
-                  <button onClick={console.log(phobia)}>
-                    Print current phobia
-                  </button>
 
                   <h2>New Releases</h2>
                   <div className="new-releases-list">
@@ -398,14 +396,6 @@ function App() {
 
                 <nav>
                   <button onClick={fetchPhobiaResultsForList}> testing </button>
-                  <Link to="/CustomTriggers">CustomTriggers</Link>
-                  <br />
-                  <Link to="/AddCustomTriggerForm">AddCustomTriggerForm</Link>
-                  <br />
-                  <Link to="/Account">Account</Link>
-                  <br />
-                  <Link to="/StreamPopUp">Stream Pop Up</Link>
-                  <br />
                 </nav>
               </main>
               <PhobiaSetPopUp
