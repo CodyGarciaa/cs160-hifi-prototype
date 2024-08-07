@@ -37,8 +37,13 @@ function App() {
     setIsPopUpVisible(true);
   };
 
+  const [isLoading, setIsLoading] = useState(false);
   const closePopUp = () => {
     setIsPopUpVisible(false);
+    setIsLoading(true);
+    fetchPhobiaResultsForList().then(() => {
+      setIsLoading(false); // Hide the loading screen once fetching is complete
+    });
   };
 
   const handleSearch = (query) => {
@@ -341,6 +346,11 @@ function App() {
               </header>
 
               <main>
+                {isLoading && (
+                  <div className="loading-overlay">
+                    <div className="spinner"></div>
+                  </div>
+                )}
                 <div>
                   <div className="phobia-toggles">
                     {getDisplayPhobias().map((phobiaName) => (
@@ -394,9 +404,9 @@ function App() {
                   </div>
                 </div>
 
-                <nav>
+                {/* <nav>
                   <button onClick={fetchPhobiaResultsForList}> testing </button>
-                </nav>
+                </nav> */}
               </main>
               <PhobiaSetPopUp
                 isVisible={isPopUpVisible}
