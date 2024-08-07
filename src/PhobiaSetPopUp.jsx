@@ -83,6 +83,10 @@ const PhobiaSetPopUp = ({
               +
             </Button>
           </div>
+          <div className="warning">
+            Don't close the popup before your selected all your triggers! <br />
+            Movie posters may contain images of your phobia trigger!
+          </div>
           <br />
           <br />
           <br />

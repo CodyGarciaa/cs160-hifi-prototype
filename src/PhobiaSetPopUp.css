@@ -66,3 +66,10 @@
     column-gap: 10px; 
     margin-bottom: 30px;
 }
+
+.warning {
+    margin-top: 50px;
+    font-size: 16px;
+    line-height: 1.5;
+    position: relative;
+}
