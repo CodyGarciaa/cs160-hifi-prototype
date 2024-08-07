@@ -3,7 +3,7 @@ import DropDownDescription from "./DropDownDescription.jsx";
 import { useNavigate, useLocation } from "react-router-dom";
 import Button from "./Button.jsx";
 import "./PhobiaSceneDescription.css";
-import WarningSing from "./warning-sign-icon-transparent-background-free-png 2.png";
+import WarningSign from "./warning-sign-icon-transparent-background-free-png 2.png";
 
 export default function PhobiaSceneDescription({ phobiaArray }) {
   const navigate = useNavigate();
@@ -41,12 +41,12 @@ export default function PhobiaSceneDescription({ phobiaArray }) {
           <div className="num-scenes">
             This movie has {totalScenes} scenes with your trigger
           </div>
-          <div className="warning">
+          <div className="spoiler-warning">
             Scene descriptions may contain spoilers!
           </div>
         </div>
         <div className="scene-desc-warnings-img">
-          <img src={WarningSing} className="warning-sign" />
+          <img src={WarningSign} className="warning-sign" />
         </div>
       </div>
       {Object.keys(scenesByPhobia).map(

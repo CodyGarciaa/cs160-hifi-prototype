@@ -85,7 +85,7 @@ export default function FeedbackForm({ onSubmit }) {
           />
         </Button>
         <h1 className="feedback-h1">Phobia Feedback</h1>
-        <p>Is the phobia information for this movie accurate?</p>
+        <div className="feedback-question">Is the phobia information for this movie accurate?</div>
         <div className="button-group">
           <button
             type="button"
@@ -94,7 +94,7 @@ export default function FeedbackForm({ onSubmit }) {
             }`}
             onClick={() => handleButtonClick("correct")}
           >
-            <span role="img" aria-label="smile">
+            <span className="emoji" role="img" aria-label="smile">
               😊
             </span>{" "}
             Seems fine
@@ -106,7 +106,7 @@ export default function FeedbackForm({ onSubmit }) {
             }`}
             onClick={() => handleButtonClick("wrong")}
           >
-            <span role="img" aria-label="sad">
+            <span className="emoji" role="img" aria-label="sad">
               😢
             </span>{" "}
             There are errors
@@ -114,12 +114,12 @@ export default function FeedbackForm({ onSubmit }) {
         </div>
         <textarea
           id="text-feedback"
-          placeholder="Your feedback is helpful for us!"
+          placeholder="Your feedback is helpful to us!"
           value={textFeedback}
           onChange={(e) => setTextFeedback(e.target.value)}
         />
         <div className="time-question">
-          <div>If your trigger pops up in the movie unfortunately...</div>
+          <div className="feedback-question2">Let us know if and when your trigger pops up in the movie...</div>
           {timeInputs.map((input) => (
             <div key={input.id} className="time-inputs">
               <div className="time-input-container">

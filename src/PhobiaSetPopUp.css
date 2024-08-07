@@ -73,3 +73,15 @@
     line-height: 1.5;
     position: relative;
 }
+
+.pop-up-warning-section {
+    display: flex;
+}
+
+.pop-up-warning-text {
+    font-size: 14px;
+}
+
+.pop-up-warning-symbol {
+    width: 40px;
+}

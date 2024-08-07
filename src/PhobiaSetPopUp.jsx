@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./PhobiaSetPopUp.css";
 import ToggleButton from "./ToggleButton.jsx";
 import Button from "./Button.jsx";
+import WarningSign from "./warning-sign-icon-transparent-background-free-png 2.png";
+
 
 const PhobiaSetPopUp = ({
   isVisible,
@@ -83,17 +85,21 @@ const PhobiaSetPopUp = ({
               +
             </Button>
           </div>
-          <div className="warning">
-            Don't close the popup before selecting all your triggers! <br /> <br />
-            Movie posters may contain images of your phobia trigger.
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div className="pop-up-warning-section">
+            <div className="pop-up-warning-text">
+              Posters may contain images of your phobia, so make sure to select your phobia!
+            </div>
+            <div className="pop-up-warning-symbol">
+              <img src={WarningSign} className="pop-up-warning-symbol" />
+            </div>
           </div>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
           <br />
           <br />
         </div>
