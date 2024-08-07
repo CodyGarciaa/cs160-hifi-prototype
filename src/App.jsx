@@ -26,7 +26,7 @@ function App() {
   // const location = useLocation();
   // const { movie_data } = location.state || {};
 
-  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+  const [isPopUpVisible, setIsPopUpVisible] = useState(true);
 
   const [phobiaResults1, setPhobiaResults1] = useState([]);
   const [phobiaResults2, setPhobiaResults2] = useState([]);
