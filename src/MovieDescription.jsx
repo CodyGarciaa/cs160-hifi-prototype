@@ -155,7 +155,7 @@ export default function MovieDescription({ phobiaArray, movieFeedback }) {
 
   const goToStream = () => {
     if (title == 'The Matrix') {
-      navigate("/StreamMatrix", { state: { movie_data: movie_data } });
+      navigate("/StreamMatrix", { state: { movie_data: movie_data, scenesByPhobia: scenesByPhobia } });
     } else {
       navigate("/Stream", { state: { movie_data: movie_data } });
     }

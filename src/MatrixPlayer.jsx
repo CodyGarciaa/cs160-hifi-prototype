@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './MatrixPlayer.css';
+import 'video.js/dist/video-js.css';
+
 
 const MatrixPlayer = ({ videoSrc, markers }) => {
   const videoRef = useRef(null);
@@ -41,6 +43,10 @@ const MatrixPlayer = ({ videoSrc, markers }) => {
 
   return (
     <div className="video-player-container">
+      <video class="test-videojs video-js" data-setup='{}' controls>
+        <source src={videoSrc} type="video/mp4" />
+      </video>
+      
       <video ref={videoRef} controls width="300">
         <source src={videoSrc} type="video/mp4" />
         Your browser does not support the video tag.
