@@ -19,6 +19,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import PhobiaSetPopUp from "./PhobiaSetPopUp.jsx";
 import MovieList from "./MovieList.jsx";
+import StreamPopUp from "./StreamPopUp.jsx";
 
 function App() {
   // const location = useLocation();
@@ -402,6 +403,8 @@ function App() {
                   <br />
                   <Link to="/Account">Account</Link>
                   <br />
+                  <Link to="/StreamPopUp">Stream Pop Up</Link>
+                  <br />
                 </nav>
               </main>
               <PhobiaSetPopUp
@@ -452,6 +455,7 @@ function App() {
           element={<MovieDescription phobiaArray={phobia.split(",")} />}
         />
         <Route path="/Stream" element={<Stream />} />
+        <Route path="/StreamPopUp" element={<StreamPopUp />} />
       </Routes>
     </Router>
   );

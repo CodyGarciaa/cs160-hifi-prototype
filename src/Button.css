@@ -86,3 +86,19 @@
   font-weight: 700;
   margin-right: 10px;
 }
+
+.scene-pop-up-cont-btn {
+  color: white;
+  background-color: #282828;
+  border-radius: 10px;
+  height: 60px;
+  font-size: 20px;
+}
+
+.scene-pop-up-skip-btn {
+  color: white;
+  background-color: #6951FF;
+  border-radius: 10px;
+  height: 60px;
+  font-size: 20px;
+}
