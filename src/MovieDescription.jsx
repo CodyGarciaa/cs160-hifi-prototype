@@ -148,7 +148,9 @@ export default function MovieDescription({ phobiaArray, movieFeedback }) {
   };
 
   const goToPhobiaSceneDescription = () => {
-    navigate("/PhobiaSceneDescription", { state: { movie_data: movie_data } });
+    navigate("/PhobiaSceneDescription", {
+      state: { movie_data: movie_data, scenesByPhobia: scenesByPhobia },
+    });
   };
 
   const goToStream = () => {
