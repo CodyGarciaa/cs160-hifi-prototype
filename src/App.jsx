@@ -9,6 +9,7 @@ import FeedbackMessage from "./FeedbackMessage.jsx";
 import CustomTriggers from "./CustomTriggers.jsx";
 import MovieDescription from "./MovieDescription.jsx";
 import Stream from "./Stream.jsx";
+import StreamMatrix from "./StreamMatrix.jsx";
 import AddCustomTriggerForm from "./AddCustomTriggerForm.jsx";
 import EditCustomTriggerForm from "./EditCustomTrigger.jsx";
 import Account from "./Account.jsx";
@@ -460,6 +461,7 @@ function App() {
           }
         />
         <Route path="/Stream" element={<Stream />} />
+        <Route path="/StreamMatrix" element={<StreamMatrix />} />
         <Route path="/StreamPopUp" element={<StreamPopUp />} />
       </Routes>
     </Router>
