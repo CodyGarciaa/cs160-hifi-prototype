@@ -4,7 +4,7 @@ import Button from "./Button.jsx";
 import { FaStar } from "react-icons/fa";
 import "./MovieDescription.css";
 
-export default function MovieDescription({ phobiaArray }) {
+export default function MovieDescription({ phobiaArray, movieFeedback }) {
   const navigate = useNavigate();
 
   const [sceneTimes, setSceneTimes] = useState([]);
@@ -49,6 +49,8 @@ export default function MovieDescription({ phobiaArray }) {
   useEffect(() => {
     console.log("starting " + phobiaArray.length);
     console.log(phobiaArray);
+    console.log(movieFeedback);
+    console.log(title);
 
     if (phobiaArray.length == 1 && phobiaArray[0] == "") {
       console.log("quit");
@@ -56,6 +58,9 @@ export default function MovieDescription({ phobiaArray }) {
     }
 
     const fetchSceneDescriptions = async () => {
+      const feedback = movieFeedback[title]
+        ? JSON.stringify(movieFeedback[title])
+        : "";
       const response = await fetch(
         "https://noggin.rea.gent/used-cricket-6900",
         {
@@ -68,6 +73,7 @@ export default function MovieDescription({ phobiaArray }) {
           body: JSON.stringify({
             movie: title,
             phobia: phobiaArray.join(","),
+            feedback: feedback,
           }),
         }
       ).then((response) => response.json());
@@ -97,7 +103,7 @@ export default function MovieDescription({ phobiaArray }) {
       setTotalScenes(total);
     };
 
-    if (title && (phobiaArray.length > 0) && !updated) {
+    if (title && phobiaArray.length > 0 && !updated) {
       fetchSceneDescriptions();
     }
   }, [title, phobiaArray]);
