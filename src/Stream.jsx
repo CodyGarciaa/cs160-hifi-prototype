@@ -30,11 +30,13 @@ export default function Stream( {} ) {
   return (
     <div className="stream-container">
       <div className={`video-page-container ${isPopUpVisible ? 'blur-background' : ''}`}>
-        <h1 className="video-title">{title}</h1>
-        <iframe src={videoSRC}></iframe>
-        <Button className="pop-up-btn" onClick={openPopUp}>
+        {/* <h1 className="video-title">{title}</h1> */}
+        <div className='iframe-container'>
+          <iframe className="streamIframe" src={videoSRC}></iframe>
+        </div>
+        {/* <Button className="pop-up-btn" onClick={openPopUp}>
            Show Pop Up
-         </Button>
+         </Button> */}
          
         <br/>
         <br/>
@@ -47,8 +49,8 @@ export default function Stream( {} ) {
           style={{ width: '20px', height: '20px' }}/>
         </Button>
       </div>
-      {isPopUpVisible && <div className="dark-overlay"></div>}
-      {isPopUpVisible && <StreamPopUp onClose={closePopUp} />}
+      {/* {isPopUpVisible && <div className="dark-overlay"></div>}
+      {isPopUpVisible && <StreamPopUp onClose={closePopUp} />} */}
     </div>
  );
 };

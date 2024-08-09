@@ -13,7 +13,8 @@ export default function Stream({}) {
     'currentTimeSec': 60,
     'currentSkipTime': 120,
     'currentTime': '00:01:00 - 00:02:00',
-    'currentDescription': 'something'
+    'currentDescription': 'something',
+    'phobia': 'something'
   }
   const [pauseData, setPauseData] = useState(sceneStarter);
 
@@ -25,7 +26,7 @@ export default function Stream({}) {
     liveui: true,
     playsinline: true,
     sources: [{
-      src: `${process.env.PUBLIC_URL}/theMatrix.mp4`,
+      src: `${process.env.PUBLIC_URL}/theMatrix30mins.mp4`,
       type: 'video/mp4'
     }]
   };
@@ -39,6 +40,7 @@ export default function Stream({}) {
   let scenetime = [];
   let scenetimesec = [];
   let scenedescription = [];
+  let scenephobia = [];
   Object.keys(scenesByPhobia).forEach(key => {
     scenesByPhobia[key].forEach(element => {
       scenetime.push(element['time']);
@@ -46,6 +48,7 @@ export default function Stream({}) {
       let totalSeconds = (parseInt(timeParts[0], 10) * 3600) + (parseInt(timeParts[1], 10) * 60) + parseInt(timeParts[2], 10);
       scenetimesec.push(totalSeconds);
       scenedescription.push(element['description']);
+      scenephobia.push(key);
     }); 
   });
   let combined = scenetimesec.map((t, i) => [t, scenetime[i], scenedescription[i]]);
@@ -53,9 +56,8 @@ export default function Stream({}) {
   scenetimesec = combined.map(item => item[0]);
   scenetime = combined.map(item => item[1]);
   scenedescription = combined.map(item => item[2]);
-  // console.log(scenetime);
-  // console.log(scenetimesec);
-  // console.log(scenedescription);
+  console.log(scenetime);
+  console.log(scenephobia);
 
   const handlePlayerReady = (player) => {
     playerRef.current = player;
@@ -90,8 +92,10 @@ export default function Stream({}) {
     let helperIndex = scenetimesec.indexOf(currentTime);
     let currentStamp = scenetime[helperIndex];
     let currentDescription = scenedescription[helperIndex];
+    let currentPhobia = scenephobia[helperIndex];
     
     let helperScene = { ...pauseData };
+    helperScene['phobia'] = currentPhobia;
     helperScene['currentTimeSec'] = currentTime;
     helperScene['currentTime'] = currentStamp;
     helperScene['currentDescription'] = currentDescription;

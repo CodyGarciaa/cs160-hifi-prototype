@@ -11,7 +11,8 @@ const StreamPopUp = ({ onClose, scene_data }) => {
     'currentTimeSec': 60,
     'currentSkipTime': 120,
     'currentTime': '00:01:00 - 00:02:00',
-    'currentDescription': 'something'
+    'currentDescription': 'something',
+    'phobia': 'something'
   }
   const [newSceneData, setNewSceneData] = useState(sceneStarter);
 
@@ -24,6 +25,7 @@ const StreamPopUp = ({ onClose, scene_data }) => {
       helperScene['currentSkipTime'] = (parseInt(timeParts[0], 10) * 3600) + (parseInt(timeParts[1], 10) * 60) + parseInt(timeParts[2], 10);
       helperScene['currentTime'] = scene_data['currentTime'];
       helperScene['currentDescription'] = scene_data['currentDescription'];
+      helperScene['phobia'] = scene_data['phobia'];
       setNewSceneData(helperScene);
     };
     fetchData();
@@ -68,7 +70,7 @@ const StreamPopUp = ({ onClose, scene_data }) => {
           </>
         ) : (
           <>
-            <div className="scene-pop-up-warning">The next scene may contain:</div>
+            <div className="scene-pop-up-warning">The next scene may contain: {newSceneData['phobia']} </div>
             <div className="scene-pop-up-btns">
               <Button className="scene-pop-up-skip-btn" onClick={handleSeeDetails}>See Details</Button>
               {/* <Button className="scene-pop-up-cont-btn" onClick={onClose(newSceneData['currentTimeSec'])}>Continue &nbsp; &#9654;</Button> */}

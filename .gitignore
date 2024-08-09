@@ -1,3 +1,5 @@
 node_modules
 .eslintcache
 *.pack
+/public/theMatrix.mp4
+/public/theMatrix30mins.mp4
