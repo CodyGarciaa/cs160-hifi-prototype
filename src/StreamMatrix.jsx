@@ -35,8 +35,6 @@ export default function Stream({}) {
   const location = useLocation();
 
   const { movie_data, scenesByPhobia } = location.state || {};
-  const title = movie_data['tmdb_data']['title'];
-  // console.log(scenesByPhobia);
   let scenetime = [];
   let scenetimesec = [];
   let scenedescription = [];
@@ -124,7 +122,6 @@ export default function Stream({}) {
   return (
     <div className="stream-container">
       <div className={`video-page-container ${isPopUpVisible ? 'blur-background' : ''}`}>
-        {/* <h1 className="video-title">Testing {title}</h1> */}
         <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
         <Button className="back-btn matrix" onClick={goToMovie}>
           <img src="https://cdn-icons-png.flaticon.com/512/566/566002.png"

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Button from "./Button.jsx";
-import { FaStar } from "react-icons/fa";
 import "./MovieDescription.css";
 
 export default function MovieDescription({ phobiaArray, movieFeedback }) {
@@ -187,22 +186,6 @@ export default function MovieDescription({ phobiaArray, movieFeedback }) {
                 <Button className="trailer-button">See trailer &#9654;</Button>
                 <Button className="add-to-list-button">+ Add to list</Button>
               </div>
-
-              {/* <div className="rating-set">
-                <div class="stars">
-                  {[...Array(5)].madiv((star, index) => {
-                    const ratingValue = index + 1;
-                    return (
-                      <FaStar
-                        key={index}
-                        size={24}
-                        color={ratingValue <= (response['stars']/2) ? "#ffc107" : "#e4e5e9"}
-                      />
-                    );
-                  })}
-                </div>
-                <p>Average rating: {starRating}</p>
-              </div> */}
             </div>
           </div>
           <div className="poster-container">

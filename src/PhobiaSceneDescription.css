@@ -15,11 +15,6 @@ p {
 }
 
 .spoiler-warning {
-    /* display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; */
     font-size: 14px;
     color: #ff0000;
 }
