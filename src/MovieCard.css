@@ -1,7 +1,7 @@
 .movie-card {
     display: flex;
     flex-direction: column;
-    position: relative; /* Ensure the movie card itself is positioned correctly */
+    position: relative;
 }
 
 .movie-poster {
@@ -29,9 +29,6 @@
     position: absolute;
     bottom: 10px;  
     right: 10px;   
-    /* display: flex;
-    justify-content: flex-end;
-    align-items: flex-end; */
 }
 
 /* Triangle symbol */
@@ -51,8 +48,8 @@
 .warning-symbol::after {
     content: '!';
     position: absolute;
-    top: 2px; /* Adjust to position the '!' inside the triangle */
-    left: -10px; /* Adjust to center the '!' inside the triangle */
+    top: 2px; 
+    left: -10px; 
     width: 20px;
     text-align: center;
     color: black;

@@ -15,14 +15,11 @@
     pointer-events: auto; /* Make the content interactive */
     color: white;
     font-size: 2rem;
-    /* text-align: center; */
-    /* background: rgba(0, 0, 0, 0.7); */
     padding: 20px;
     border-radius: 10px;
     width: 500px;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
 }
 
 .scene-pop-up-warning {

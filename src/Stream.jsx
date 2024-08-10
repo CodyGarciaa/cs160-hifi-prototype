@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Button from './Button.jsx';
-import StreamPopUp from './StreamPopUp.jsx';
 import './Stream.css';
 
 export default function Stream( {} ) {
@@ -17,27 +16,12 @@ export default function Stream( {} ) {
     navigate('/MovieDescription', { state: { movie_data: movie_data } })
   }
 
-  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
-
-  const openPopUp = () => {
-    setIsPopUpVisible(true);
-  };
-
-  const closePopUp = () => {
-    setIsPopUpVisible(false);
-  };
-
   return (
     <div className="stream-container">
-      <div className={`video-page-container ${isPopUpVisible ? 'blur-background' : ''}`}>
-        {/* <h1 className="video-title">{title}</h1> */}
+      <div className={'video-page-container'}>
         <div className='iframe-container'>
           <iframe className="streamIframe" src={videoSRC}></iframe>
         </div>
-        {/* <Button className="pop-up-btn" onClick={openPopUp}>
-           Show Pop Up
-         </Button> */}
-         
         <br/>
         <br/>
         <br/>
@@ -49,8 +33,6 @@ export default function Stream( {} ) {
           style={{ width: '20px', height: '20px' }}/>
         </Button>
       </div>
-      {/* {isPopUpVisible && <div className="dark-overlay"></div>}
-      {isPopUpVisible && <StreamPopUp onClose={closePopUp} />} */}
     </div>
  );
 };

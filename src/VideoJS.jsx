@@ -1,7 +1,7 @@
 import React from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
-import './VideoJS.css'; // Import the CSS file
+import './VideoJS.css';
 
 export const VideoJS = (props) => {
   const videoRef = React.useRef(null);
@@ -37,11 +37,10 @@ export const VideoJS = (props) => {
   }, [playerRef]);
 
   return (
-    <div className="video-wrapper"> {/* Add a wrapper div */}
+    <div className="video-wrapper">
       <div data-vjs-player>
         <div ref={videoRef} />
       </div>
-      <div className="overlay-text">This is overlay text</div> {/* Add the overlay text div */}
     </div>
   );
 }

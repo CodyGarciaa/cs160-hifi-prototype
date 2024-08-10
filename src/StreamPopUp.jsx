@@ -62,9 +62,7 @@ const StreamPopUp = ({ onClose, scene_data }) => {
                 </div>
             </div>
             <div className="scene-pop-up-btns">
-              {/* <Button className="scene-pop-up-skip-btn" onClick={onClose(newSceneData['currentSkipTime'])}>Skip Scene</Button> */}
               <Button className="scene-pop-up-skip-btn" onClick={handleCloseNext}>Skip Scene</Button>
-              {/* <Button className="scene-pop-up-cont-btn" onClick={onClose(newSceneData['currentTimeSec'])}>Continue &nbsp; &#9654;</Button> */}
               <Button className="scene-pop-up-cont-btn" onClick={handleCloseCurrent}>Continue &nbsp; &#9654;</Button>
             </div>
           </>
@@ -73,7 +71,6 @@ const StreamPopUp = ({ onClose, scene_data }) => {
             <div className="scene-pop-up-warning">The next scene may contain: {newSceneData['phobia']} </div>
             <div className="scene-pop-up-btns">
               <Button className="scene-pop-up-skip-btn" onClick={handleSeeDetails}>See Details</Button>
-              {/* <Button className="scene-pop-up-cont-btn" onClick={onClose(newSceneData['currentTimeSec'])}>Continue &nbsp; &#9654;</Button> */}
               <Button className="scene-pop-up-cont-btn" onClick={handleCloseCurrent}>Continue &nbsp; &#9654;</Button>
             </div>
           </>

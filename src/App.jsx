@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ToggleButton from "./ToggleButton.jsx";
 import SearchBar from "./SearchBar.jsx";
@@ -15,23 +15,12 @@ import EditCustomTriggerForm from "./EditCustomTrigger.jsx";
 import Account from "./Account.jsx";
 import PhobiaSceneDescription from "./PhobiaSceneDescription.jsx";
 import MovieCard from "./MovieCard.jsx";
-import MovieCard2 from "./MovieCard2.jsx";
-import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import PhobiaSetPopUp from "./PhobiaSetPopUp.jsx";
-import MovieList from "./MovieList.jsx";
 import StreamPopUp from "./StreamPopUp.jsx";
 import UserIcon from "./user.svg";
 
 function App() {
-  // const location = useLocation();
-  // const { movie_data } = location.state || {};
-
   const [isPopUpVisible, setIsPopUpVisible] = useState(true);
-
-  const [phobiaResults1, setPhobiaResults1] = useState([]);
-  const [phobiaResults2, setPhobiaResults2] = useState([]);
-  const [phobiaResults3, setPhobiaResults3] = useState([]);
 
   const openPopUp = () => {
     setIsPopUpVisible(true);
@@ -50,8 +39,6 @@ function App() {
     console.log(`Search query: ${query}`);
     // replace this with  actual search logic
   };
-
-  // const phobia = "snake"; // phobia to test for now
 
   // phobia contains a string with all phobias
   // ex. phobia = "snakes, holes, blood"
@@ -82,26 +69,10 @@ function App() {
     }
   };
 
-  const helperLabel = [
-    "m0",
-    "m1",
-    "m2",
-    "m3",
-    "m4",
-    "m5",
-    "m6",
-    "m7",
-    "m8",
-    "m9",
-    "m10",
-    "m11",
-    "m12",
-    "m13",
-    "m14",
-  ];
+  const helperLabel = ["m0", "m1", "m2", "m3", "m4", "m5", "m6", "m7", 
+                      "m8", "m9", "m10", "m11","m12", "m13", "m14"];
   const movieList = {};
   helperLabel.forEach((key) => {
-    // movieList[key] = {'title': 'title', 'poster': 'https://placehold.co/600x400'};
     movieList[key] = {
       mIndex: parseInt(key.replace("m", "")),
       tmdb_data: { title: "title", poster: "https://placehold.co/600x400" },
@@ -231,25 +202,21 @@ function App() {
         responseList[i]["movieHasPhobia"] &&
         !responseList[i]["posterHasPhobia"]
       ) {
-        // newMovieIDs["m" + i]["poster"] = "https://placehold.co/600x400/yellow/black";
         newMovieIDs["m" + i]["cssClass"] = "";
         newMovieIDs["m" + i]["showWarningSymbol"] = true;
       } else if (
         responseList[i]["posterHasPhobia"] &&
         !responseList[i]["movieHasPhobia"]
       ) {
-        // newMovieIDs["m" + i]["poster"] = "https://placehold.co/600x400/red/white";
         newMovieIDs["m" + i]["cssClass"] = "blur-poster";
         newMovieIDs["m" + i]["showWarningSymbol"] = false;
       } else if (
         responseList[i]["posterHasPhobia"] &&
         responseList[i]["movieHasPhobia"]
       ) {
-        // newMovieIDs["m" + i]["poster"] = "https://placehold.co/600x400/red/black";
         newMovieIDs["m" + i]["cssClass"] = "blur-poster";
         newMovieIDs["m" + i]["showWarningSymbol"] = true;
       } else {
-        // newMovieIDs["m" + i]["poster"] = newMovieIDs["m" + i]["original_poster"];
         newMovieIDs["m" + i]["cssClass"] = "";
         newMovieIDs["m" + i]["showWarningSymbol"] = false;
       }
@@ -258,8 +225,6 @@ function App() {
     setMovieIDs(newMovieIDs);
     console.log("finished noggin");
   };
-
-  // useEffect({fetchPhobiaResultsForList}, [phobia]);
 
   const [triggers, setTriggers] = useState([]);
 
@@ -369,44 +334,39 @@ function App() {
                   </div>
 
                   <SearchBar onSearch={handleSearch} />
-                  {/* <button onClick={fetchPhobiaResults}>Check Phobias</button> */}
 
                   <h2>New Releases</h2>
                   <div className="new-releases-list">
                     <div className="movie-list">
-                      <MovieCard2 movie_data={movieIDs["m0"]} />
-                      <MovieCard2 movie_data={movieIDs["m1"]} />
-                      <MovieCard2 movie_data={movieIDs["m2"]} />
-                      <MovieCard2 movie_data={movieIDs["m3"]} />
-                      <MovieCard2 movie_data={movieIDs["m4"]} />
+                      <MovieCard movie_data={movieIDs["m0"]} />
+                      <MovieCard movie_data={movieIDs["m1"]} />
+                      <MovieCard movie_data={movieIDs["m2"]} />
+                      <MovieCard movie_data={movieIDs["m3"]} />
+                      <MovieCard movie_data={movieIDs["m4"]} />
                     </div>
                   </div>
 
                   <h2 id="browse-header">Top Rated</h2>
                   <div className="top-rated-list">
                     <div className="movie-list">
-                      <MovieCard2 movie_data={movieIDs["m5"]} />
-                      <MovieCard2 movie_data={movieIDs["m6"]} />
-                      <MovieCard2 movie_data={movieIDs["m7"]} />
-                      <MovieCard2 movie_data={movieIDs["m8"]} />
-                      <MovieCard2 movie_data={movieIDs["m9"]} />
+                      <MovieCard movie_data={movieIDs["m5"]} />
+                      <MovieCard movie_data={movieIDs["m6"]} />
+                      <MovieCard movie_data={movieIDs["m7"]} />
+                      <MovieCard movie_data={movieIDs["m8"]} />
+                      <MovieCard movie_data={movieIDs["m9"]} />
                     </div>
                   </div>
                   <h2 id="browse-header">Browse</h2>
                   <div className="browse-list">
                     <div className="movie-list">
-                      <MovieCard2 movie_data={movieIDs["m10"]} />
-                      <MovieCard2 movie_data={movieIDs["m11"]} />
-                      <MovieCard2 movie_data={movieIDs["m12"]} />
-                      <MovieCard2 movie_data={movieIDs["m13"]} />
-                      <MovieCard2 movie_data={movieIDs["m14"]} />
+                      <MovieCard movie_data={movieIDs["m10"]} />
+                      <MovieCard movie_data={movieIDs["m11"]} />
+                      <MovieCard movie_data={movieIDs["m12"]} />
+                      <MovieCard movie_data={movieIDs["m13"]} />
+                      <MovieCard movie_data={movieIDs["m14"]} />
                     </div>
                   </div>
                 </div>
-
-                {/* <nav>
-                  <button onClick={fetchPhobiaResultsForList}> testing </button>
-                </nav> */}
               </main>
               <PhobiaSetPopUp
                 isVisible={isPopUpVisible}

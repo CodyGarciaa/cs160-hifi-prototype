@@ -1,4 +1,3 @@
-// src/SearchBar.js
 import React, { useState } from 'react';
 import './SearchBar.css'; // Import the CSS file for styling
 
@@ -31,13 +30,6 @@ const SearchBar = ({ onSearch }) => {
         onChange={handleInputChange}
         onKeyDown={handleKeyPress}
       />
-      {/* <button
-        className="search-button"
-        type="button"
-        onClick={handleSearch}
-      >
-        Search
-      </button> */}
     </div>
   );
 };

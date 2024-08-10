@@ -4,13 +4,12 @@ import "./AddCustomTriggerForm.css";
 import Button from "./Button";
 
 export default function AddCustomTriggerForm({ onAddTrigger }) {
-  // Accept onAddTrigger prop
   const [triggerDescription, setTriggerDescription] = useState("");
   const navigate = useNavigate();
 
   const goToCustomTriggers = () => {
     // Navigate to the correct path for CustomTriggers
-    navigate("/CustomTriggers"); // Use the root path or the specific path you want for CustomTriggers
+    navigate("/CustomTriggers"); 
   };
 
   const handleSubmit = async (e) => {

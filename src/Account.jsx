@@ -26,14 +26,14 @@ const Avatar = ({ src, alt }) => {
     return (
       <div
         style={{
-          width: '100px', // Set your desired width
-          height: '100px', // Set your desired height
-          borderRadius: '50%', // For a circular avatar
+          width: '100px', 
+          height: '100px', 
+          borderRadius: '50%', 
           overflow: 'hidden',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: '#e0e0e0', // Fallback background color
+          backgroundColor: '#e0e0e0', 
         }}
       >
         {src ? (
@@ -70,9 +70,9 @@ const styles = {
       padding: '10px',
     },
     square: {
-      width: '100px', // Set your desired width
-      height: '100px', // Set your desired height
-      backgroundColor: '#e0e0e0', // Grey color for the placeholder
+      width: '100px', 
+      height: '100px', 
+      backgroundColor: '#e0e0e0', 
     },
 };
   
@@ -86,7 +86,6 @@ export default function Account() {
     }
     return (
         <>
-            {/* <button className="back-button" onClick={goToHome}>&#8592;</button> */}
             <Button className="back-btn" onClick={goToHome}>
               <img src="https://cdn-icons-png.flaticon.com/512/566/566002.png"
               style={{ width: '20px', height: '20px' }}/>
